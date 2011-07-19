@@ -1,0 +1,10 @@
+<root>
+    <bkpJob>
+        <enableRDiff>       1       </enableRDiff>
+        <sleepGraceTime>    1000    </sleepGraceTime>
+    </bkpJob>
+    <cgh>
+        <exec>  1   </exec>
+        <run>   1   </run>
+    </cgh>
+</root>

@@ -1,0 +1,13 @@
+{perl}
+sub askModule
+{
+	my $module  = $_[0];
+	my $command = $_[1];
+
+	my $result;
+	my $evalu   = "\$result \= \&$module\:\:$module(\'$command\')\;";
+
+	eval $evalu;  if ($@) { die "FAILED TO RUN MODULE $module: $@\n"; }
+
+	return $result;
+}

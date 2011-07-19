@@ -1,0 +1,134 @@
+ORGANISM	NCBI_ID	VARIANT	SEQUENCE_TYPE
+#SEQUENCE TYPE
+#1, 'CDS'
+#2, 'CHROMOSSOMES'
+#3, 'CIRCULAR'
+#4, 'CONTIGS'
+#5, 'COMPLETE'
+#6, 'GENES'
+#7, 'ORF'
+#8, 'PARTIAL'
+#9, 'WGS SCAFFOLD'
+
+#EUKARIA
+##FUNGI 27
+###CANDIDA 9
+Candida_albicans_sc5314_assembly_21_1_CONTIGS.fasta	5476	0	4
+Candida_albicans_wo1_1_CHROMOSSOMES.fasta	5476	1	2
+Candida_dubliniensis_CD36_CHROMOSSOMES.fasta	42374	0	2
+
+Candida_guilliermondii_1_CHROMOSSOMES.fasta	4929	0	2
+Candida_lusitaniae_1_CHROMOSSOMES.fasta	36911	0	2
+Candida_parapsilosis_1_CONTIGS.fasta	5480	0	4
+Candida_tropicalis_3_CHROMOSSOMES.fasta	5482	0	2
+Candida_kruisii_CONTIGS.fasta	45561	0	4
+
+Candida_glabrata_CBS138_CHROMOSSOMES.fasta	5478	0	2
+#cerevisiae
+
+###CRYPTOCOCCUS 5
+Cryptococcus_neoformans_var_neoformans_B3501A_CHROMOSSOMES.fasta	5207	0	2
+Cryptococcus_neoformans_var_neoformans_JEC21_CHROMOSSOMES.fasta	5207	1	2
+Cryptococcus_neoformans_var_grubii_H99_SCAFFOLD.fasta	5207	2	9	
+Cryptococcus_gattii_R265_CHROMOSSOMES.fasta	552467	0	2
+#Cryptococcus_gattii_WM276_GENES.fasta	552467	1	6
+Cryptococcus_gattii_WM276_CHROMOSSOMES.fasta	552467	1	2
+
+###ASPERGILLUS 3
+Aspergillus_fumigatus_Af293_CHROMOSSOMES.fasta	5085	0	2
+Aspergillus_nidulans_FGSC_A4_CHROMOSSOMES.fasta	162425	0	2
+Aspergillus_niger_CBS513.88_CHROMOSSOMES.fasta	5061	0	2
+Aspergillus_clavatus_NRRL_1_CHROMOSSOMES.fasta	5057	0	2
+Aspergillus_flavus_NRRL3357_CHROMOSSOMES.fasta	5059	0	2
+Aspergillus_oryzae_RIB40_CHROMOSSOMES.fasta	5062	0	2
+Aspergillus_terreus_NIH2624_CHROMOSSOMES.fasta	33178	0	2
+
+
+###OTHER FUNGI 15
+Ashbya_gossypii_ATCC_10895_CHROMOSSOMES.fasta	33169	0	2
+Batrachochytrium_dendrobatidis_JEL423_CHROMOSSOMES.fasta	109871	0	2
+Clavispora_lusitaniae_ATCC42720_WGS_SCAFFOLD.fasta	36911	0	9
+Debaryomyces_hansenii_CBS767_CHROMOSSOMES.fasta	4959	0	2
+Encephalitozoon_cuniculi_GB-M1_CHROMOSSOMES.fasta	6035	0	2
+
+
+Kluyveromyces_lactis_NRRL_Y-1140_CHROMOSSOMES.fasta	28985	0	2
+Kluyveromyces_thermotolerans_CBS6340_CHROMOSSOMES.fasta	381046	0	2
+
+Lodderomyces_elongisporus_YB-4239_CHROMOSSOMES.fasta	36914	0	2
+Neurospora_crassa_OR74A_SCAFFOLD.fasta	5141	0	9
+Pichia_stipitis_CBS6054_CHROMOSSOMES.fasta	4924	0	2
+
+Saccharomyces_cerevisiae_CHROMOSSOMES.fasta	4932	0	2
+Saccharomyces_kluyveri_NRRL_Y12651_CHROMOSSOMES.fasta	4934	0	2
+Schizosaccharomyces_pombe_CHROMOSSOMES.fasta	4896	0	2
+
+Yarrowia_lipolytica_strain_CLIB122_CHROMOSSOMES.fasta	4952	0	2
+Zygosaccharomyces_rouxii_CBS732_CHROMOSSOMES.fasta	4956	0	2
+
+
+
+
+
+##PLANTS 2
+Arabidopsis_thaliana_CHROMOSSOMES.fasta	3702	0	2
+Oryza_sativa_japonica_CHROMOSSOMES.fasta	4530	0	2
+
+##METAZOA 7
+Caenorhabditis_elegans_CHROMOSSOMES.fasta	6239	0	2
+Drosophila_melanogaster_CHROMOSSOMES.fasta	7227	0	2
+Xenopus_tropicalis_4_SCAFFOLD.fasta	8364	0	9
+Homo_sapiens_HuRef36.3_CHROMOSSOMES.fasta	9606	0	2
+Pan_troglodytes_CHROMOSSOMES.fasta	9598	0	2
+Rattus_norvegicus_CHROMOSSOMES.fasta	10116	0	2
+Mus_musculus_37.1_CHROMOSSOMES.fasta	10090	0	2
+
+##OTHER EUKARIA	1
+Plasmodium_falciparum_CHROMOSSOMES.fasta	5833	0	2
+
+
+
+
+
+#VIRUS 37
+##PAPILLOMA 37
+###TO GET 8
+Ursus_maritimus_papillomavirus_type_1_complete_genome.fasta	461322	0	5
+Deer_papillomavirus_complete_genome.fasta	10564	0	5
+European_elk_papillomavirus_complete_genome.fasta	10565	0	5
+Western_roedeer_papillomavirus_1_complete_genome.fasta	470214	0	5
+Ovine_papillomavirus_1_complete_genome.fasta	56144	0	5
+Bovine_papillomavirus_type_2_complete_genome.fasta	10560	0	5
+Bovine_papillomavirus_type_1_complete_genome.fasta	10559	0	5
+Common_chimpanzee_papillomavirus_1_complete_genome.fasta	66261	0	5
+
+###OK 29
+Papillomavirus_Human_type_06b_HPV6b_complete_genome.fasta	10600	0	5
+Papillomavirus_Human_type_10_HPV10_complete_genome.fasta	333759	0	5
+Papillomavirus_Human_type_11_HPV11_complete_genome.fasta	10580	0	5
+Papillomavirus_Human_type_12_HPV12_complete_genome.fasta	10604	0	5
+Papillomavirus_Human_type_13_HPV13_complete_genome.fasta	10573	0	5
+Papillomavirus_Human_type_16_HPV16_complete_genome.fasta	333760	0	5
+Papillomavirus_Human_type_18_HPV18_complete_genome.fasta	333761	0	5
+Papillomavirus_Human_type_26_HPV26_complete_genome.fasta	333762	0	5
+Papillomavirus_Human_type_31_HPV31a_complete_genome.fasta	10585	0	5
+Papillomavirus_Human_type_33_HPV33_complete_genome.fasta	10586	0	5
+Papillomavirus_Human_type_35h_HPV35h_complete_genome.fasta	31551	0	5
+Papillomavirus_Human_type_35_HPV35_complete_genome.fasta	10587	0	5
+Papillomavirus_Human_type_39_HPV39_complete_genome.fasta	10588	0	5
+Papillomavirus_Human_type_40_HPV40_complete_genome.fasta	10615	0	5
+Papillomavirus_Human_type_44_HPV44_complete_genome.fasta	10592	0	5
+Papillomavirus_Human_type_45_HPV45_complete_genome.fasta	10593	0	5
+Papillomavirus_Human_type_51_HPV51_complete_genome.fasta	10595	0	5
+Papillomavirus_Human_type_52_HPV52_complete_genome.fasta	10618	0	5
+Papillomavirus_Human_type_53_HPV53_complete_genome.fasta	333765	0	5
+Papillomavirus_Human_type_54.fasta	333766	0	5
+Papillomavirus_Human_type_56_HPV56_complete_genome.fasta	10596	0	5
+Papillomavirus_Human_type_59_complete_viral_genome.fasta	37115	0	5
+Papillomavirus_Human_type_61_HPV61_complete_genome.fasta	37116	0	5
+Papillomavirus_Human_type_66_HPV66_complete_genome.fasta	37119	0	5
+Papillomavirus_Human_type_68_proviral_DNA.fasta	45240	0	8
+Papillomavirus_Human_type_70_complete_genome.fasta	39457	0	5
+Papillomavirus_Human_type_72_E6_E7_E1A_E1B_E2_E4_L2_and_L1.fasta	333770	0	8
+Papillomavirus_Human_type_73_E6_E7_E1_E2_E4_L2_and_L1_genes.fasta	51033	0	8
+

@@ -1,0 +1,59 @@
+#!/usr/bin/perl -w
+use strict;
+use warnings;
+use File::Copy;
+
+my $folder          = "./";
+my $base            = $ARGV[0];
+# my $base          = "velvet12";
+my $ext             = ".fasta";
+my $fasta           = $folder . $base . $ext;
+my $outFolder       = "$folder$base";
+my $moveSmallerThan = 207;
+my $smallFolder     = "$outFolder/small";
+
+mkdir $outFolder;
+mkdir $smallFolder if $moveSmallerThan;
+
+open FASTA, "<$fasta" or die "COULD NOT OPEN $fasta FILE: $!";
+my $i        = 1;
+my $currFile = '';
+while (<FASTA>)
+{
+	if (/^>/)
+	{
+		my $it;
+		if    ( $i <  10 ) { $it = "00$i"; }
+ 		elsif ( $i < 100 ) { $it =  "0$i"; }
+		else               { $it = $i;};
+
+		close SPLIT;
+		if ( $moveSmallerThan )
+		{
+			#print "MOVING SMALL\n";
+			if ( -f "$outFolder/$currFile" )
+			{
+				#print "\tFILE $currFile EXISTS\n";
+				if ( ! -s "$outFolder/$currFile" )
+				{
+					#print "\tFILE $currFile SIZE 0\n";
+					move("$outFolder/$currFile", "$smallFolder/$currFile");
+				} else {
+					if ( $moveSmallerThan >= -s "$outFolder/$currFile" )
+					{
+						print "\tFILE $outFolder/$currFile SIZE " . (-s $currFile) . " < $moveSmallerThan\n";
+						move("$outFolder/$currFile", "$smallFolder/$currFile");
+					}
+				}
+			} else {
+				#print "\tFILE $outFolder/$currFile DOESNT EXISTS\n";
+			}
+		}
+
+		$currFile = "$base\_$it$ext";
+		open SPLIT, ">$outFolder/$currFile" or die "COULD NOT OPEN $outFolder/$currFile FILE: $!";
+		$i++;
+	}
+	print SPLIT;
+}
+close FASTA;

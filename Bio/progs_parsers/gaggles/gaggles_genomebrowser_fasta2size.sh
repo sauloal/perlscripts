@@ -1,0 +1,1 @@
+cat R265_c_neoformans.fasta | perl -ne 'BEGIN{ my %chrom; my $lastChrom = "" } if ($_ =~ /^\>(.+)$/) { $lastChrom = $1; $chrom{$lastChrom} = 0 } else { $chrom{$lastChrom} += length $_ } END { map { print $_, ";", $chrom{$_}, ";linear\n" } sort keys %chrom }'

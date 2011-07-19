@@ -1,0 +1,158 @@
+<xml>
+	<inFiles><INFILEREPLACE/></inFiles>
+
+	<dbFolder>     db         </dbFolder>
+	<fastaFolder>  fasta      </fastaFolder>
+	<blastFolder>  blast      </blastFolder>
+	<xmlFolder>    xml        </xmlFolder>
+	<finalFolder>  out        </finalFolder>
+	<inExpFolder>  query_exp  </inExpFolder>
+	<inFastaFolder>query_fasta</inFastaFolder>
+
+	<mkdbSetup>
+		<html>		java -jar /home/saulo/Desktop/blast/cgh/xalan-j_2_7_1/xalan.jar </html>
+		<blast2xml>	./blast_xml.pl			</blast2xml>
+		<xmlMerger>	./mergeXML.pl			</xmlMerger>
+		<xml2csv>	./genMultivarTable.pl	</xml2csv>
+		<pca>		./PCA.pl				</pca>
+		<pcaR>		runR ./pca.r			</pcaR>
+	</mkdbSetup>
+
+
+<!-- <inFiles>CNA_probes</inFiles> -->
+<!--	<expression>ORIGINAL_DATA_FINAL.txt.xml</expression> -->
+	<expression></expression>
+
+	<db>
+		<array>
+			<fileName>Cryptococcus_gattii_R265_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  cgR265                                     						</dbName>
+			<title>   Cryptococcus gattii R265                   						</title>
+			<taxId>   294750                                     						</taxId>
+		</array>
+
+		<array>
+			<fileName>Cryptococcus_neoformans_var_grubii_H99_SCAFFOLD.fasta				</fileName>
+			<dbName>  cngrubiiH99                                     					</dbName>
+			<title>   Cryptococcus neoformans var grubii H99                   			</title>
+			<taxId>   235443                                     						</taxId>
+		</array>
+
+		<array>
+			<fileName>Cryptococcus_neoformans_var_neoformans_B3501A_CHROMOSSOMES.fasta	</fileName>
+			<dbName>  cnneoB3501A                                     					</dbName>
+			<title>   Cryptococcus neoformans var neoformans B-3501A                   	</title>
+			<taxId>   283643                                     						</taxId>
+		</array>
+
+		<array>
+			<fileName>Cryptococcus_neoformans_var_neoformans_JEC21_CHROMOSSOMES.fasta	</fileName>
+			<dbName>  cnneoJEC21                                     					</dbName>
+			<title>   Cryptococcus neoformans var neoformans JEC21                   	</title>
+			<taxId>   214684                                     					 	</taxId>
+		</array>
+<!--
+		<array>
+			<fileName>cbs7750v4.fasta													</fileName>
+			<dbName>  cgcbs7750v4														</dbName>
+			<title>   Cryptococcus gattii CBS7750 v4										</title>
+			<taxId>   294751                                     					 	</taxId>
+		</array>
+
+		<array>
+			<fileName>cbs7750_DE_NOVO_LAST.fasta										</fileName>
+			<dbName>  cgcbs7750DN														</dbName>
+			<title>   Cryptococcus gattii CBS7750 DN									</title>
+			<taxId>   294751                                     					 	</taxId>
+		</array>
+-->
+		<array>
+			<!--<fileName>WM276GBFF10_06.fasta												</fileName>-->
+			<fileName>WM276GBFF10_06_full_named.fasta									</fileName>
+			<dbName>  cnwm276															</dbName>
+			<title>   Cryptococcus neoformans WM276										</title>
+			<taxId>   367775                                     					 	</taxId>
+		</array>
+
+
+	</db>
+<!--
+	<alias>
+		<array>
+			<dbs>	cgR265 cgcbs7750v4 cngrubiiH99 cnneoB3501A cnneoJEC21 cnwm276	</dbs>
+			<dbName>crypto															</dbName>
+			<title>	Cryptococcus													</title>
+		</array>
+		<array>
+			<dbs>	cgR265 cgcbs7750v4 												</dbs>
+			<dbName>cgattii															</dbName>
+			<title>	Cryptococcus gattii												</title>
+		</array>
+		<array>
+			<dbs>	cngrubiiH99 cnneoB3501A cnneoJEC21								</dbs>
+			<dbName>cneo															</dbName>
+			<title>	Cryptococcus neoformans											</title>
+		</array>
+		<array>
+			<dbs>	cnneoB3501A cnneoJEC21											</dbs>
+			<dbName>cneoneo															</dbName>
+			<title>	Cryptococcus neoformans neoformans								</title>
+		</array>
+	</alias>
+-->
+	<pcaPar>
+		<array>-renameRE JEC21_LT_15FOLD_AND_GT001 JEC21 							</array>
+		<array>-renameRE R265_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE001 R265  		</array>
+		<array>-renameRE H99_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE001 H99  		</array>
+		<array>-renameRE B3501_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE00 B3501  		</array>
+		<array>-exclude go_comp go_func go_supp ID  								</array>
+		<array>-renameRE Cryptococcus_gattii_R265 R265  							</array>
+		<array>-renameRE Cryptococcus_neoformans_var_grubii_H99 H99  				</array>
+		<array>-renameRE Cryptococcus_neoformans_var_neoformans_B3501A B3501		</array>
+		<array>-renameRE Cryptococcus_neoformans_var_neoformans_JEC21 JEC21 		</array>
+	</pcaPar>
+
+
+	<serious>       1 </serious>
+	<doClean>       1 </doClean>
+	<doCleanDb>     1 </doCleanDb>
+	<mkDb>          1 </mkDb>
+	<mkAlias>       1 </mkAlias>
+	<mkXml>         1 </mkXml>
+	<mergeXml>      0 </mergeXml>
+	<convertHtml>   1 </convertHtml>
+	<convertCsv>    0 </convertCsv>
+	<mkPca>         0 </mkPca>
+	<mkPcaR>        0 </mkPcaR>
+
+	<blast>         1 </blast>
+	<blast>
+		<doAlias>  				 1 		</doAlias>
+		<doShort>				 0		</doShort>
+		<doShort>
+	 		<gapOpen>			 2		</gapOpen>
+			<gapExtend>			 2		</gapExtend>
+			<wordSize>			 4		</wordSize>
+			<penalty>			-3		</penalty>
+			<reward>			 2		</reward>
+			<windowSize>		 4		</windowSize>
+			<minRawGapScore>	10		</minRawGapScore>
+			<xDrop>         	10		</xDrop>
+		</doShort>
+
+		<evalue>				.1			</evalue>
+		<identity>				50			</identity>
+		<threads>				6			</threads>
+		<task>					blastn		</task>
+		<!-- <task>     blastn-short </task> -->
+		<desc>					EVALUE <blast.evalue/> TASK <blast.task/> IDENTITY <blast.identity/> </desc>
+	</blast>
+
+
+    <toXml>
+		<hypothetical>	 0 </hypothetical>
+		<minIdent>		60 </minIdent>
+		<minConsv>		70 </minConsv>
+		<minMaxStretch>	 5 </minMaxStretch>
+	</toXml>
+</xml>

@@ -1,0 +1,140 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+#http://wiki.przemoc.net/tips/linux
+
+my $inFile = shift;
+die "NO INPUT FILE DEFINED"                if ( ! defined $inFile );
+die "INPUT FILE '$inFile' DOES NOT EXISTS" if ( ! -f $inFile );
+
+my $shortFile = substr($inFile,    rindex($inFile, "/")+1);
+my $shortName = substr($shortFile, 0, rindex($shortFile, "."));
+my $shortExt  = substr($shortFile, rindex($shortFile, ".") + 1);
+
+unlink('vdstart') if ( -f 'vdstart' );
+
+print "INPUT  : $inFile\n";
+print "INPUT S: $shortFile\n";
+print "INPUT N: $shortName\n";
+print "INPUT E: $shortExt\n";
+
+my $offSet = `od -j344 -N4 -td4 "$inFile" | awk 'NR==1{print \$2;}'`;
+chomp $offSet;
+
+die 'IMPOSSIBLE TO GET OFFSET'  if ( ! defined $offSet );
+if ( $offSet !~ /^\d+$/)
+{ 
+	print "NOT VDI\n";
+	print "OFFSET $offSet ISNT VALID";
+	$offSet = 0;
+}
+
+print "OFFSET : $offSet\n";
+
+my $cmdDd  = 'dd if="'.$inFile.'" of=vdstart bs=1 skip='.$offSet.' count=1b';
+
+print "CMD DD : $cmdDd\n"; 
+print `$cmdDd`;
+
+die 'COULD NOT EXTRACT BOOT SECTOR' if ( ! -f 'vdstart' );
+
+my $cmdDsk = 'sfdisk -luS vdstart';
+print "CMD DSK: $cmdDsk\n"; 
+my @dskRes =`$cmdDsk`;
+
+print "@dskRes";
+my @keys;
+foreach my $line ( @dskRes )
+{
+    #            #       b        S       E       Sec     F       T
+    if ($line =~ /vdstart(\d+)\s+(\**)\s*(\d+)\s+(\S+)\s+(\d+)\s+(\S+)\s+(.+)/)
+    {
+        next if ($7 eq "Empty");
+        my %vals = (
+            number  => $1,
+            boot    => $2,
+            start   => $3,
+            end     => $4,
+            sectors => $5,
+            flag    => $6,
+            type    => $7
+        );
+
+        my $pOff = $offSet + ($vals{start} * 512);
+        my $pLen = $vals{sectors} * 512;
+        
+        $vals{pOffSet} = $pOff;
+        $vals{pLength} = $pLen;
+        
+        
+        print "#$1\tBOOT: $2\tSTART: $3\tEND: $4\tSECTOR: $5\tFLAG: $6\tTYPE: $7\tOFFSET: ($offSet + ($vals{start} * 512)) $pOff\tLENGHT: $pLen\n";
+        $keys[$1] = \%vals;
+    }
+}
+
+for ( my $num = 1; $num < @keys; $num++ )
+{
+    my $data    = $keys[$num];
+    my $pOff    = $data->{pOffSet};
+    my $pLength = $data->{pLength};
+    my $pType   = $data->{type};
+    my $type    = &parseType($pType);
+    
+    #image.vdi <mount point> -t <filesystem> -o loop,offset=<offset>  # add sizelimit=<length>
+    my $cmd     = "su -c '";
+       $cmd    .= "mount";
+       #$cmd    .= " -t $type ";
+       $cmd    .= " -o loop,offset=$pOff";
+       $cmd    .= ",sizelimit=$pLength" if ( @keys > 2 );
+       $cmd    .= " \"$inFile\" disk/";
+       #$cmd    .= "; ls disk; umount disk";
+       $cmd    .= "'";
+    print "#$num :: $cmd\n";
+    $data->{cmd} = $cmd;
+    my $mount  = $shortName ."_$num\_mount.sh";
+    my $umount = $shortName ."_$num\_umount.sh";
+    open  MNT, ">$mount"  or die "$!";
+    open UMNT, ">$umount" or die "$!";
+    print MNT $cmd, "\n";
+    print UMNT "su -c '";
+    print UMNT "umount disk", "\n";
+    print UMNT "'", "\n";
+    close MNT;
+    close UMNT;
+    
+    `chmod +x $mount`  if -f $mount;
+    `chmod +x $umount` if -f $umount;
+}
+
+
+
+sub parseType
+{
+    my $v = shift;
+    if    ( $v =~ /FAT/  ) { return "vfat"    }
+    elsif ( $v =~ /Linux/) { return "ext3"    }
+    elsif ( $v =~ /EXT2/ ) { return "ext2"    }
+    elsif ( $v =~ /EXT3/ ) { return "ext3"    }
+    elsif ( $v =~ /EXT4/ ) { return "ext4"    }
+    elsif ( $v =~ /NTFS/ ) { return "ntfs-3g" }
+    else                   { return "auto"    }
+}
+
+#Math
+#
+#Time for some math. Calculate offset (and length if you plan to mount encrypted partition) of chosen partition:
+#
+#offset = <data offset> + <start sector> * 512
+#length = <number of sectors> * 512
+#In my image there is only one partition, so I have no choice: offset = 65536, length = 8587160064.
+#
+#Mounting
+#
+#Last part is mounting (turn off VM which uses your VDI image) and you must be superuser to do this (I'm using sudo, but if you haven't configured it, try su -c):
+#
+#$ sudo mount image.vdi <mount point> -t <filesystem> -o loop,offset=<offset>  # add sizelimit=<length>
+#                                    # if partition is encrypted; your losetup must support this option
+#In my case I ended with:
+#
+#$ sudo mount image.vdi /mnt/vd -t ext3 -o loop,offset=65536,ro

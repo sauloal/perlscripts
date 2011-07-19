@@ -1,0 +1,6 @@
+twitter_consumer_key           = key
+twitter_consumer_secret        = sec
+twitter_access_tolken          = ac_tol
+twitter_access_tolken_secret   = ac_tol_sec
+gtalk_username                 = usr
+gtalk_password                 = pass

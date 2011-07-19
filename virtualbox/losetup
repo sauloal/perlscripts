@@ -1,0 +1,2 @@
+su -c 'losetup /dev/loop0 0layer.img; losetup -a'
+

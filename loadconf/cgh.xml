@@ -1,0 +1,122 @@
+<root>
+    <cgh>
+        <baseFolder>/home/saulo/Desktop/blast/cgh   </baseFolder>
+        <addUnkown> 1                               </addUnkown>
+        <include>
+            <ext>
+                <array>.pl  </array>
+                <array>.pm  </array>
+                <array>.r   </array>
+                <array>.sh  </array>
+            </ext>
+            <folder>
+                <array>query_exp        </array>
+                <array>query_fasta      </array>
+                <array>xalan-j_2_7_1    </array>
+            </folder>
+        </include>
+        <exclude>
+            <ext>
+                <array>.conf    </array>
+                <array>.xml     </array>
+                <array>.blast   </array>
+                <array>.html    </array>
+                <array>.txt     </array>
+                <array>.csv     </array>
+                <array>.log     </array>
+                <array>.tar     </array>
+                <array>~        </array>
+            </ext>
+        </exclude>
+        <byFolder>
+            <array>
+                <folder>fasta</folder>
+                <exclude>
+                    <ext>
+                        <array>.log</array>
+                    </ext>
+                </exclude>
+                <include>
+                    <ext>
+                        <array>.fasta</array>
+                    </ext>
+                </include>
+            </array>
+        </byFolder>
+    </cgh>
+</root>
+<!--
+    'blast.exec'                                  =>
+'1', READ THE INFO
+    'blast.run'                                   => '1', RUN THE COMMAND
+    'blast.preExec'                               => '', COMMAND TO BE RUN BEFORE BACKUP ANALYSIS
+    'blast.posExec'                               => '', COMMAND TO BE RUN AFTER BACKUP ANALYSIS
+    'blast.preRun'                                => '', COMMAND TO BE RUN BEFORE BACKUP RUN
+    'blast.posRun'                                => '', COMMAND TO BE RUN AFTER BACKUP RUN
+    'blast.baseFolder'                            => '/home/saulo/Desktop/blast',
+    'blast.addUnknown'                            => '1', ADD NOT CLEARLY NEGATED FILES
+    'blast.include.ext.ext0'                      => '.pl',
+    'blast.include.folder.folder0'                => 'cgh',
+    'blast.include.folder.folder1'                => 'test',
+    'blast.exclude.ext.ext0'                      => '.xml',
+    'blast.exclude.ext.ext1'                      => '.log',
+    'blast.exclude.ext.ext2'                      => '.nsq',
+    'blast.exclude.ext.ext3'                      => '.fasta',
+    'blast.exclude.folder.folder0'                => 'ferry',
+    'blast.byFolder.byFolder0.folder'             => 'Tremella',
+    'blast.byFolder.byFolder0.include.ext.ext0'   => '.xml',
+    'blast.byFolder.byFolder0.exclude.ext.ext0'   => '.fasta',
+    'blast.byFolder.byFolder0.exclude.ext.ext1'   => '.README',
+    'blast.byFolder.byFolder0.exclude.ext.ext2'   => '.txt',
+-->
+
+<!--
+    <project>
+
+        <exec></exec>
+    <run></run>
+    <preExec></preExec>
+    <posExec></posExec>
+    <preRun></preRun>
+    <posRun></posRun>
+        <baseFolder></baseFolder>
+    <addUnkown>1</addUnkown>
+        <include>
+            <ext>
+                <array></array>
+            </ext>
+            <folder>
+                <array></array>
+            </folder>
+        </include>
+        <exclude>
+            <ext>
+                <array></array>
+            </ext>
+            <folder>
+                <array></array>
+            </folder>
+        </exclude>
+        <byFolder>
+            <array>
+                <folder></folder>
+                <include>
+                    <ext>
+                        <array></array>
+                    </ext>
+            <folder>
+            <array></array>
+            </folder>
+                </include>
+                <exclude>
+                    <ext>
+                        <array></array>
+                    </ext>
+            <folder>
+            <array></array>
+            </folder>
+                </exclude>
+            </array>
+        </byFolder>
+    </project>
+-->

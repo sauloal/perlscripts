@@ -1,0 +1,1 @@
+cat blast_microarray_Microarray_may_r265_data.csv.xml.all.blast.tab | perl -ne 'if (/DIFF\:(\S+?)\|/) { if (($1 >= 3) || ($1 <=-3)) { print }}' > blast_microarray_Microarray_may_r265_data.csv.xml.ge3.blast.tab

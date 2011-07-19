@@ -1,0 +1,24 @@
+<config>
+	<reader>
+		<inputExpTab>input/MERGED.tab</inputExpTab>
+		<inputAnnoTab>input/ANNO.tab</inputAnnoTab>
+		<outXml>output.xml</outXml>
+	</reader>
+	
+	<tab>
+		<firstLine>1</firstLine>
+	</tab>
+	
+	<anno>
+		<primaryColumn>queryId</primaryColumn>
+	</anno>
+	
+	<rna>
+		<primaryColumn>chr</primaryColumn>
+		<mergeCols>FPKM_1,FPKM_2</mergeCols>
+		<extraCols>trans_id</extraCols>
+		<extraCols>coverage,length,Contig_length</extraCols>
+		<leftCol>left</leftCol>
+		<rightCol>right</rightCol>
+	</rna>
+</config>

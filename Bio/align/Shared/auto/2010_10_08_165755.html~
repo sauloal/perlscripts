@@ -1,0 +1,20 @@
+   <!--RID=  -->
+            
+            
+                                    
+            <div class="">
+            <a href="#" class="arrowlink shown showing resArr" id="showAlign">Detailed primer reports</a>
+            <div id="alignInfo" toggle="showAlign" class="resBox shown" name="setToggle">
+                <div id="alignments" class="blRes">
+                
+                <!---->
+                </div><!--/#alignments-->
+            </div><!-- alignInfo -->
+            </div>            
+            </div><!-- SEARCH_INFO end -->
+        </div><!-- /#content -->
+    </div><!-- /#content-wrap -->
+</div><!--/#wrap-->
+</body>
+</html>
+

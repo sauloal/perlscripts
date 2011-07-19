@@ -1,0 +1,22 @@
+#!/usr/bin/perl -w
+use strict;
+use warnings;
+
+my $folder = "data/seqDB/neo/";
+my $base   = "neo_ref";
+my $ext    = ".fa";
+my $fasta  = $folder . $base . $ext;
+
+open FASTA, "<$fasta" || die "COULD NOT OPEN $fasta FILE: $!";
+my $i = 1;
+while (<FASTA>)
+{
+	if (/^>/)
+	{
+		close SPLIT;
+		open SPLIT, ">$folder$base$i$ext" || die "COULD NOT OPEN $fasta.$i FILE: $!";
+		$i++;
+	}
+	print SPLIT;
+}
+close FASTA;

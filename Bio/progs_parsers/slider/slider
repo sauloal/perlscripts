@@ -1,0 +1,1252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type"
+          content="text/html;charset=utf-8" />
+
+    <title>
+        Slider
+        &mdash;
+        Canada's Michael Smith Genome Sciences Centre
+    </title>
+
+    
+      
+        <base href="http://www.bcgsc.ca/platform/bioinfo/software/slider/" />
+      
+    
+
+    <meta name="generator" content="Plone - http://plone.org" />
+
+    <meta content="Maximum use of probability information for alignment of short sequence reads and SNP detection."
+          name="description" />
+
+    <!-- Plone ECMAScripts -->
+    
+      
+        
+            
+                <script type="text/javascript"
+                        src="http://www.bcgsc.ca/portal_javascripts/GSCPublic/ploneScripts7099.js">
+                </script>
+                
+            
+            
+                
+                
+                <script type="text/javascript"><!--  
+/* - analytics.js - */
+// http://www.bcgsc.ca/portal_javascripts/analytics.js?original=1
+document.write('<script src="http://www.google-analytics.com/urchin.js" type="text/JavaScript"><\/script>');
+function callGoogleAnalytics(){_uacct="UA-1396678-1";urchinTracker()}
+registerPloneFunction(callGoogleAnalytics);
+
+                     // --></script>
+                
+            
+        
+    
+    
+
+    
+	
+          
+        
+            
+                
+                    
+                    
+                        <style type="text/css"><!-- @import url(http://www.bcgsc.ca/portal_css/GSCPublic/ploneStyles0091.css); --></style>
+                    
+                    
+                
+            
+            
+                
+                    <link rel="alternate stylesheet"
+                          type="text/css" media="screen"
+                          href="http://www.bcgsc.ca/portal_css/GSCPublic/ploneStyles7745.css"
+                          title="Small Text" />
+                    
+                    
+                
+            
+            
+                
+                    <link rel="alternate stylesheet"
+                          type="text/css" media="screen"
+                          href="http://www.bcgsc.ca/portal_css/GSCPublic/ploneStyles9576.css"
+                          title="Large Text" />
+                    
+                    
+                
+            
+            
+                
+                    
+                    
+                        <style type="text/css"
+    media="screen"><!-- @import url(http://www.bcgsc.ca/portal_css/GSCPublic/ploneStyles5049.css); --></style>
+                    
+                    
+                
+            
+            
+                
+                    
+                    
+                        <style type="text/css" media="all"><!-- @import url(http://www.bcgsc.ca/portal_css/GSCPublic/ploneCustom.css); --></style>
+                    
+                    
+                
+            
+        
+    
+        
+        
+    
+
+    <!-- Internet Explorer CSS Fixes -->
+    <!--[if IE]>
+        <style type="text/css" media="all">@import url(http://www.bcgsc.ca/IEFixes.css);</style>
+    <![endif]-->
+
+    <link rel="shortcut icon" type="image/x-icon"
+          href="http://www.bcgsc.ca/favicon.ico" />
+
+    <link rel="home" href="http://www.bcgsc.ca"
+          title="Front page" />
+    <link rel="search"
+          href="http://www.bcgsc.ca/search_form"
+          title="Search this site" />
+    <link rel="author"
+          href="http://www.bcgsc.ca/author/ybutterf"
+          title="Author information" />
+    <link rel="contents" href="http://www.bcgsc.ca/sitemap"
+          title="Site Map" />
+
+    
+
+    
+
+    <link rel="up"
+          href="http://www.bcgsc.ca/platform/bioinfo/software"
+          title="Up one level" />
+
+    
+
+    <!-- Disable IE6 image toolbar -->
+    <meta http-equiv="imagetoolbar" content="no" />
+    
+    
+      
+      
+    
+
+    
+      
+      
+      <style type="text/css" media="all"> @import url(http://www.bcgsc.ca/plonesoftwarecenter.css);</style>
+    
+    
+
+    
+
+      
+    
+    
+    
+    
+    
+
+
+      
+      
+    
+
+    
+      
+      
+    
+
+  </head>
+
+  <body class="section-public_website" dir="ltr">
+    <div id="visual-portal-wrapper">
+
+	  <div id="visual-page-wrapper">
+	
+      <div id="portal-top">
+
+	        <div id="portal-header">
+	          <a class="hiddenStructure" accesskey="2"
+              href="http://www.bcgsc.ca/platform/bioinfo/software/slider#documentContent">Skip to content.</a>
+
+	          <a class="hiddenStructure" accesskey="6"
+              href="http://www.bcgsc.ca/platform/bioinfo/software/slider#portlet-navigation-tree">Skip to navigation</a>
+
+				<table id="top-header" style="width: 100%;"><tr>
+				<td width="70%">
+		             <h1 id="portal-logo">
+    <a href="http://www.bcgsc.ca" accesskey="1">Canada's Michael Smith Genome Sciences Centre</a>
+</h1>
+				</td>
+				<td width="30%" valign="top" style="padding-right: 1em; padding-top: 2em;">
+				
+		            <div id="portal-searchbox">
+    <form name="searchform"
+          action="http://www.bcgsc.ca/search"
+          style="white-space:nowrap"
+          onsubmit="return liveSearchSubmit()">
+
+        <label for="searchGadget" class="hiddenStructure">Search Site</label>
+
+        <div class="LSBox">
+        <input id="searchGadget" name="SearchableText"
+               type="text" size="15" title="Search Site"
+               accesskey="4" class="visibility:visible" />
+
+        <input class="searchButton" type="submit"
+               value="Search" />
+
+        <div class="LSResult" id="LSResult" style=""><div class="LSShadow" id="LSShadow"></div></div>
+        </div>
+    </form>
+
+    <div id="portal-advanced-search" class="hiddenStructure">
+        <a href="http://www.bcgsc.ca/search_form"
+           accesskey="5">
+            Advanced Search&hellip;
+        </a>
+    </div>
+
+</div>
+
+				</td></tr>
+				</table>
+
+             
+    <h5 class="hiddenStructure">Sections</h5>
+
+    <ul id="portal-globalnav">
+        <li id="portaltab-home" class="plain">
+            <a href="http://www.bcgsc.ca/" title="Home">Home</a></li>
+        <li id="portaltab-platform" class="selected">
+            <a href="http://www.bcgsc.ca/platform/"
+               title="Research">Platforms</a></li>
+        <li id="portaltab-project" class="plain">
+            <a href="http://www.bcgsc.ca/project/"
+               title="Projects">Projects</a></li>
+        <li id="portaltab-data" class="plain">
+            <a href="http://www.bcgsc.ca/data/" title="Data">Data</a></li>
+        <li id="portaltab-training" class="plain">
+            <a href="http://www.bcgsc.ca/training/"
+               title="Training">Training</a></li>
+        <li id="portaltab-services" class="plain">
+            <a href="http://www.bcgsc.ca/services/"
+               title="Services">Services</a></li>
+        <li id="portaltab-faculty" class="plain">
+            <a href="http://www.bcgsc.ca/faculty/"
+               title="Faculty">Faculty</a></li>
+        <li id="portaltab-career" class="plain">
+            <a href="http://www.bcgsc.ca/career/"
+               title="Careers">Careers</a></li>
+        <li id="portaltab-about" class="plain">
+            <a href="http://www.bcgsc.ca/about/"
+               title="About">About</a></li>
+    </ul>
+
+
+
+	          <div id="portal-personaltools-wrapper">
+
+
+
+</div>
+
+	           <div id="portal-breadcrumbs">
+
+    <span id="breadcrumbs-you-are-here">You
+are here:</span>
+    <a href="http://www.bcgsc.ca/public_website">Home</a>
+    <span class="breadcrumbSeparator">
+        &rarr;
+        
+    </span>
+    <span dir="ltr">
+        
+            <a href="http://www.bcgsc.ca/platform">Platforms</a>
+            <span class="breadcrumbSeparator">
+                &rarr;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            <a href="http://www.bcgsc.ca/platform/bioinfo">Bioinformatics</a>
+            <span class="breadcrumbSeparator">
+                &rarr;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            <a href="http://www.bcgsc.ca/platform/bioinfo/software">GSC Software Centre</a>
+            <span class="breadcrumbSeparator">
+                &rarr;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            
+            
+            <span>Slider</span>
+         
+    </span>
+
+</div>
+	
+	          </div>
+
+      </div>
+
+      <div class="visualClear"><!-- --></div>
+
+      <table id="portal-columns">
+        <tbody>
+          <tr>
+            
+            <td id="portal-column-one">
+              <div class="visualPadding">
+                
+                  
+
+    
+        
+
+        
+            
+
+<dl class="portlet" id="portlet-navigation-tree">
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <a href="http://www.bcgsc.ca/platform" class="tile">Platforms</a>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem lastItem">
+        <ul class="portletNavigationTree navTreeLevel0">
+
+            
+
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/microarray"
+           class="state-published visualIconPadding"
+           title="Affymetrix platform">Affymetrix</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo"
+           class="state-published visualIconPadding"
+           title="">Bioinformatics</a>
+        
+    </div>
+
+    <ul class="navTree navTreeLevel2">
+        
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/license"
+           class="state-published visualIconPadding"
+           title="">Bioinformatics Licenses</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/docs"
+           class="state-published visualIconPadding"
+           title="">Documentation</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/ge"
+           class="state-published visualIconPadding"
+           title="">Gene Expression</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-plonesoftwarecenter">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/software"
+           class="state-closed visualIconPadding"
+           title="Bioinformatic Software, Scripts and Tools">GSC Software Centre</a>
+        
+    </div>
+
+    <ul class="navTree navTreeLevel3">
+        
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-pscproject">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider"
+           class="state-published visualIconPadding navTreeCurrentItem"
+           title="Maximum use of probability information for alignment of short sequence reads and SNP detection.">Slider</a>
+        
+    </div>
+
+    <ul class="navTree navTreeLevel4">
+        
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-pscreleasefolder">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider/releases"
+           class="state-missing-value visualIconPadding"
+           title="Existing and upcoming releases for this project.">Releases</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+    </ul>
+    
+</li>
+
+
+    </ul>
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/bioinfo/SARS"
+           class="state-published visualIconPadding"
+           title="">SARS</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+    </ul>
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/dd"
+           class="state-published visualIconPadding"
+           title="The drug discovery platform performs high-throughput virtual screening using leading molecular docking software and high performance computing resources to find novel therapeutics for human diseases.">Drug Discovery</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/solexa"
+           class="state-published visualIconPadding"
+           title="">Illumina (Solexa) Sequencing</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/mapping"
+           class="state-published visualIconPadding"
+           title="Construction of BAC fingerprint based physical maps.">Physical Mapping</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/proteomics"
+           class="state-published visualIconPadding"
+           title="">Proteomics</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+<li class="navTreeItem visualNoMarker">
+
+    
+
+    <div class="visualIcon contenttype-folder">
+        
+        <a href="http://www.bcgsc.ca/platform/sequencing"
+           class="state-published visualIconPadding"
+           title="High-throughput large-scale DNA analysis.">Sequencing</a>
+        
+    </div>
+
+    
+    
+</li>
+
+
+
+
+        </ul>
+        <span class="portletBottomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
+</dl>
+
+
+        
+
+        
+
+        
+    
+    
+        
+
+        
+            
+
+<dl class="portlet" id="portlet-login">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <a href="https://www.bcgsc.ca/login_form"
+           class="tile">GSC Account</a>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem odd">
+		<p>
+		<a href="https://www.bcgsc.ca/login_form?came_from=">Secure Login</a>
+		</p>
+    </dd>
+    
+    <dd class="portletItem lastItem">
+        <a href="http://www.bcgsc.ca/mail_password_form"
+           class="tile">
+           <img src="http://www.bcgsc.ca/info_icon.gif" alt="" title="" height="16" width="16" />
+           Forgot your password?
+        </a>
+    </dd>
+    
+</dl>
+
+
+
+        
+
+        
+
+        
+    
+    
+        
+
+        
+            <div>
+
+<dl class="portlet" id="portlet-related">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span>Related</span>
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem odd">
+        <h5>Local resources</h5>
+        <ul class="visualNoMarker">
+            <li>
+                <a href="http://www.bcgsc.ca/platform/bioinfo/software/findpeaks/releases/view"
+                   class="tile">
+                   <img src="http://www.bcgsc.ca/download_icon.gif"
+                        alt="Slider" />
+                   &nbsp;Releases
+                </a>
+            </li>
+            <li>
+                <a href="http://www.bcgsc.ca/publish/softstage/software/findpeaks/releases/view"
+                   class="tile">
+                   <img src="http://www.bcgsc.ca/download_icon.gif"
+                        alt="Slider" />
+                   &nbsp;Releases
+                </a>
+            </li>
+            <li>
+                <a href="http://www.bcgsc.ca/publish/softstage/software/slider/view"
+                   class="tile">
+                   <img src="http://www.bcgsc.ca/product_icon.gif"
+                        alt="Slider" />
+                   &nbsp;Slider
+                </a>
+            </li>
+            <li>
+                <a href="http://www.bcgsc.ca/platform/bioinfo/software/findpeaks/view"
+                   class="tile">
+                   <img src="http://www.bcgsc.ca/product_icon.gif"
+                        alt="Slider" />
+                   &nbsp;FindPeaks
+                </a>
+            </li>
+            <li>
+                <a href="http://www.bcgsc.ca/publish/softstage/software/findpeaks/view"
+                   class="tile">
+                   <img src="http://www.bcgsc.ca/product_icon.gif"
+                        alt="Slider" />
+                   &nbsp;FindPeaks
+                </a>
+            </li>
+        </ul>
+    </dd>
+
+    
+
+</dl>
+
+</div>
+        
+
+        
+
+        
+    
+
+                
+                &nbsp;
+              </div>
+            </td>
+            
+
+            
+            <td id="portal-column-content">
+
+              
+                <div id="content" class="">
+
+                  
+
+                  <div class="documentContent" id="region-content">
+
+                    <a name="documentContent"></a>
+
+                    
+
+    
+
+
+
+                    
+
+                    <div>
+
+  <div>
+
+        <div class="documentActions">
+    
+
+    <h5 class="hiddenStructure">Document Actions</h5>
+
+    <ul>
+    
+        <li>
+            <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider/sendto_form">
+
+                <img src="http://www.bcgsc.ca/mail_icon.gif"
+                     alt="Send this page to somebody"
+                     title="Send this page to somebody"
+                     id="icon-sendto" />
+            </a>
+        </li>
+    
+    
+        <li>
+            <a href="javascript:this.print();">
+
+                <img src="http://www.bcgsc.ca/print_icon.gif"
+                     alt="Print this page"
+                     title="Print this page" id="icon-print" />
+            </a>
+        </li>
+    
+
+    </ul>
+    
+
+    
+
+</div>
+
+        <h1 class="documentFirstHeading">
+            <img src="http://www.bcgsc.ca/product_icon.gif" alt="" title="Product" height="16" width="16" />
+            Slider
+        </h1>
+
+        
+
+        <div class="discreet">
+
+            
+               <a class="feedButton"
+                  href="http://www.bcgsc.ca/platform/bioinfo/software/slider/search_rss?portal_type=PSCRelease&amp;sort_on=Date&amp;sort_order=reverse&amp;path=/sites/gsc_public/public_website/platform/bioinfo/software/slider&amp;review_state=published">
+                  <img src="http://www.bcgsc.ca/rss.gif"
+                       alt="RSS Feed"
+                       title="RSS feed of the releases for this project" />
+               </a>
+            
+
+            Category: Illumina Solexa
+            &mdash;
+            <a href="http://www.bcgsc.ca/search?portal_type%3Alist=PSCProject&amp;Creator=ybutterf">Other products by this author</a>
+
+
+        </div>
+
+        <div class="visualIEFloatFix" style="margin-top: 1em;">
+            
+        </div>
+
+        <div class="documentDescription">Maximum use of probability information for alignment of short sequence reads and SNP detection.</div>
+        
+        <div class="visualClear"></div>
+
+        
+
+        
+        
+
+
+
+        
+
+        
+
+        <div style="width: 47%; float: left;">
+           <h2>
+              <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider/releases/0.6">
+              Current release:
+              Slider 0.6</a>
+            </h2>
+
+            <p class="discreet">
+                
+                    Released 2008-11-04
+                
+                
+                
+            </p>
+
+                <p>This is the first release of Slider.  A seed-based release of Slider will be available at the end of November.</p>
+                
+                <p>
+                    <a style="float: right;"
+                       href="http://www.bcgsc.ca/platform/bioinfo/software/slider/releases">
+                       List all releases&hellip;</a>
+
+                    <a href="http://www.bcgsc.ca/platform/bioinfo/software/slider/releases/0.6">Full release announcement&hellip;</a>
+                </p>
+                  <div style="border-top: 1px solid #ccc; padding-top: 0.5em;clear: left; margin-bottom: 1em">
+                      <a class="link-plain"
+                         href="http://www.bcgsc.ca/downloads/slider/slider_0.6.tar.gz">
+                        <img src="http://www.bcgsc.ca/platform_all_platforms.gif"
+                             alt=""
+                             style="float: left; display: block; margin: 0 0.5em 0.5em 0;" />
+                      </a>
+                      
+                      <a class="link-plain"
+                         href="http://www.bcgsc.ca/downloads/slider/slider_0.6.tar.gz">
+                        <span>Get</span>
+                        Slider
+                        for
+                        all platforms</a>
+                        
+                      <span class="discreet">
+                        
+                        
+                            
+                            (5.3 MB)
+                            
+                        
+                      </span>
+
+                        <p class="discreet">Slider Package</p>
+
+                  </div>
+            </div>
+
+        
+        
+        <div style="width: 47%; float: left; margin-left: 2em;">
+           <h2>Experimental releases</h2>
+           
+
+        
+                <p class="discreet" style="text-align: center; margin: 5em 0">
+                    There are no experimental releases available at the moment.
+                </p>
+        
+           
+        
+           
+        </div>
+
+        <div class="visualClear"></div>
+
+        <h2>Project Description</h2>
+
+    <div style="float:left; margin: 0.5em 1em 0.5em 0; border: 1px solid #ccc;">
+        
+            <img src="http://www.bcgsc.ca/platform/bioinfo/software/slider/logo" alt="Slider" title="Slider" height="75" width="75" />
+        
+    </div>
+
+    <dl class="portlet" style="margin: 0.5em 0 0 1em; width: 35%; float: right; clear: right;">
+        <dt class="portletHeader">Project resources</dt>
+        <dd class="portletItem">
+
+            <ul style="list-style-type: none; list-style-image: none; margin: 0;">
+                
+                
+                
+                
+                
+                
+                <li>
+                    <a href="releases" class="link-plain"
+                       title="Existing and upcoming releases for this project.">
+                        <img alt="" src="download_icon.gif" />
+                       Releases</a>
+                </li>
+                
+                <li>
+                    <a href="mailto:nmalhis@bcgsc.ca"
+                       class="link-plain"
+                       title="Contact address for this project">
+                        <img src="http://www.bcgsc.ca/mail_icon.gif"
+                             alt="" />
+                       Contact address</a>
+                </li>
+                
+
+                
+
+                
+
+                
+    
+            </ul>
+        </dd>
+    </dl>
+
+        <br />
+<h2 style="text-align: justify;"><b>Slider paper</b></h2>
+<a class="external-link" href="http://bioinformatics.oxfordjournals.org/cgi/content/abstract/btn565v1?maxtoshow=&amp;HITS=10&amp;hits=10&amp;RESULTFORMAT=&amp;fulltext=butterfield&amp;searchid=1&amp;FIRSTINDEX=0&amp;resourcetype=HWCIT">Malhis et. al. 2008</a><br /><br /><br />
+<h2 style="text-align: justify;"><b>Abstract</b></h2>
+<p style="text-align: justify;"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="ProgId" content="Word.Document" /><meta name="Generator" content="Microsoft Word 10" /><meta name="Originator" content="Microsoft Word 10" /><link href="file:///C:\DOCUME~1\ybutterf\LOCALS~1\Temp\msohtml1\01\clip_filelist.xml" rel="File-List" /><style>
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Times;
+	panose-1:2 2 6 3 5 4 5 2 3 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:536902279 -2147483648 8 0 511 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-line-height-rule:exactly;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:Times;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+--&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+</style></p>
+<p style="font-size: 11pt;">Slider
+is an application for the Illumina Sequence Analyzer output that uses the
+probability files instead of the sequence files as an input for alignment to a
+reference sequence or a set of reference sequences.<span>&nbsp; </span></p>
+<p style="text-align: justify;"><b>Motivation: </b>A plethora of alignment tools have been created that are designed to best
+fit different types of alignment conditions. While some of these are made for
+aligning Illumina Sequence Analyzer reads, none of these are fully utilizing
+its probability (prb) output.&nbsp; In this
+paper, we will introduce
+a new alignment approach (Slider) that reduces
+the alignment problem space by utilizing each read base’s probabilities given
+in the <i>prb</i> files.</p>
+<p style="text-align: justify;"><b>Results: </b>Compared with
+other aligners, Slider has higher alignment accuracy and efficiency. In
+addition, given that Slider matches bases with probabilities other than the
+most probable, it significantly reduces the percentage of base mismatches.&nbsp; The result is that its SNPs predictions are
+more accurate than other SNPs prediction approaches used today that start from
+the most probable sequence, including those using base quality.</p>
+<br />
+<h2><b>Using Slider</b></h2>
+<p>&nbsp;<br />Slider consists of five main commands and
+some utilities which are all java classes.&nbsp; Each of these commands/utilities requires some parameters that are listed in a configuration file.&nbsp; This is explained in further detail under "Running Slider".&nbsp; <br /></p>
+<p>The five main commands are:</p>
+<ul><li>CreateDB.java for
+     generating a reference database table: This table is generated using a
+     sliding window of size SZ<sub>d</sub>, where every subsequence of size SZ<sub>d</sub>
+     from the reference and its reverse complement are included. Up to two
+     undefined bases, noted as <i>Ns</i> in each subsequence, are allowed by
+     substituting all four bases for every N and generating all possible sub-sequences.
+     Finally, this database table is lexicographically sorted. Generating a
+     reference database table needs to be done once for each reference
+     sequence. For example, the human genome reference database table has
+     approximately 6 billion records (counting both forward and reverse
+     complement) that are sorted in lexicographical order. For the human
+     genome, this table was generated in less than 24 hours on a single CPU and
+     used about 160 GB of disk space. Once a reference database table is
+     generated, it can be used for every alignment to that reference, and there
+     is no need for it to be regenerated with each alignment.</li><li>CreateSequences.java
+     for generating the P0_Reads Table: Using <i>prb</i> values, we first
+     generate read sequences R<sub>ps</sub> for each <i>prb</i> line as
+     explained earlier. One unique <i>id</i> is given for all reads that are
+     generated from the same <i>prb</i> line
+     source. When a <i>prb</i> line has a
+     number of non-crisp bases larger than some threshold value UD<sub>max</sub>
+     (a value of 11 is used), only the MPS (most probable
+     sequence) is generated and is marked as a low quality, LQ.&nbsp; LQ sequences will not be used for SNP prediction. The
+     table of all reads generated from all <i>prb</i>
+     lines is then lexicographically sorted to form the P0_Reads table. </li><li>Alignment.Java: Find
+     read locations on the reference sequence with an exact match and one-off
+     match (one base mismatch) to <i>prb</i> derived sequences.</li><li>Separation.java: for
+     each reference sequence, aligned reads are then separated into two file: a
+     unique match file and a multiple match file.</li><li>SNPsPrediction.java:
+     For each reference sequence, a SNP prediction table, a coverage
+     information file, and a set of coverage histogram files are created from
+     the unique matches file of a reference sequence.</li></ul>
+<br /><br />
+<h3>Compiling Slider</h3>
+<br />Slider must first be compiled for your operating environment.<br />
+<pre>javac JavaCode/*.java</pre>
+<br /><br />
+<h3><b>Running Slider</b></h3>
+<br />The package includes a set of sample data and a configuration file.&nbsp; Slider requires a configuration file to tell it where to look for the <i>prb</i> file(s) and the reference file and the location for storing results.&nbsp; In this example, the configuration file is found in:<br />
+<pre>input/T02</pre>
+<p>It's contents include a parameter, a space, and the value.&nbsp; The location of this file is arbitrary and is specified on the command line as shown later when running Slider commands.&nbsp; In this example set, this file looks like:<br /></p>
+<pre>oMxSize&nbsp; 27
+skip&nbsp;&nbsp;&nbsp;&nbsp; 0
+ETag&nbsp;&nbsp;&nbsp;&nbsp; SET
+DATASET&nbsp; T02/
+DATABASE T02/
+genome_dir data/seqDB/T02/
+pathDB&nbsp;&nbsp;&nbsp;&nbsp; data/Database/
+pathPRB&nbsp;&nbsp;&nbsp; data/PRBs/
+pathData&nbsp;&nbsp; data/OUT/
+ch_name1
+SEQ_VAR&nbsp; T02_ref
+ch_name2 .fa
+pathMulti
+pathParallel</pre>
+This can be used as a template for future assemblies.&nbsp; A suggested format is included here.&nbsp; These parameters describe the read length (oMxSize), dataset and database names, the folders containing the reference sequence (genome_dir), database, input prb files, and output folders.&nbsp; We also provide information on the reference sequence files.&nbsp; For this sample dataset:<br />
+<ul><li><span>Each read is 27 bases, if the prb files have
+lines for more than 27 bases, only the first 27 bases will be used.&nbsp; No starting
+bases will be skipped ('skip' is set to 0).</span></li><li><span>Its output will be placed in: /data/OUT/T02</span></li><li><span>Its prb files are in: /data/</span><span>PRBs</span><span>/T02/*/*prb*.&nbsp; Note that Slider requires a subdirectory (of any name) inside the <i>PRBs/dataset </i>directory (T02 in this case) that will hold the prb files.&nbsp; This allows flexibility of using prb files with the same name.<br /></span></li><li><span>Its reference genome is in: /data/seqDB/T02/</span></li><li><span>Its reference genome file is: T02_ref.fa.&nbsp; This is a&nbsp; concatenation of SEQ_VAR and ch_name2.<span></span></span>&nbsp; The parameter, ch_name1 would be place before SEQ_VAR&nbsp; if this is required.&nbsp; This allows for flexibility in defining a list of reference sequences to align to.&nbsp; For example, to align to two reference sequences these lines in the configuration file could look like:<br />
+<pre>ch_name1 chr
+SEQ_VAR&nbsp; 1 2
+ch_name2 .fa</pre>
+<p>In this case, the alignment would occur on the reference files chr1.fa and chr2.fa which are located in the the folder that 'genome_dir' is set to.</p>
+</li><li><span>The reference genome database will be
+placed in: /data/Database/T02/</span></li><li><span>pathMulti and pathParallel are used in properties that are under development.<br /></span></li></ul>
+<br /><br />
+<p>Once the parameters file for a dataset is
+created, each command/utility can be used as:<br /></p>
+<pre>java –cp . command parametersFile</pre>
+<p style="text-align: justify;">For example, using the dataset provided, if we are using the reference
+sequence for the first time, we need first to generate its database table:<br /></p>
+<pre>java -cp . -Xmx1G JavaCode/CreateDB  input/T02</pre>
+<p style="text-align: justify;">Then, to generate the P0_Reads table
+using <i>prb</i> values for a dataset T02, then we use the command CreateSequences as:<br /></p>
+<pre>java -cp . -Xmx1G JavaCode/CreateSequences  input/T02</pre>
+<p style="text-align: justify;">To align these sequences to the reference sequence, we use Alignment
+as:<br /></p>
+<pre>java -cp . -Xmx1G JavaCode/Alignment  input/T02</pre>
+<p style="text-align: justify;">And then we need to separate the alignment result into different
+files associated with each reference sequence using the Separate command:<br /></p>
+<pre>java -cp . -Xmx1G JavaCode/Separate  input/T02</pre>
+<p style="text-align: justify;"><br />And finally SNPs prediction can be done using:<br /></p>
+<pre>java -cp . -Xmx1G JavaCode/SNPsPrediction  input/T02</pre>
+This will show homozygous SNPs identified with a minimum coverage of 2 (nmCount).<br /><br />SNP calling parameters can be adjusted as follows:<br />
+<pre><span>java –cp . -Xmx1G JavaCode/SNPsPrediction input/T02 [[<i>c</i>] <i>t</i>]</span></pre>
+<p style="margin: 0in 0in 0pt;"><span>where <i>c</i> is the minimum nmCount coverage for SNPs &lt;default is 2&gt; <br /></span></p>
+<p style="margin: 0in 0in 0pt;"><span>and <i>t</i> can be either 1 or 2 &lt;default is 1&gt;:</span></p>
+<blockquote>
+<p style="margin: 0in 0in 0pt;"><span>If t=1: Slider will search for homozygous SNPs only.</span></p>
+<p style="margin: 0in 0in 0pt;"><span>If t=2: Slider will search for homozygous and 
+heterozygous SNPs.</span></p>
+</blockquote>
+<br />
+<p style="text-align: justify;"><br /></p>
+<h3>Results</h3>
+<br />
+<br />
+<p style="text-align: justify;">For viewing alignment information, this command will send the alignment results to output.txt:<br /></p>
+<pre>java -cp . -Xmx1G JavaCode/display  input/T02 data/OUT/T02/Results/T02_ref.fa.um.s.id/ <i>n</i></pre>
+<p>This will display the first <i>n </i>reads of the alignment.&nbsp; These include unique matches or U0 or U1.&nbsp; The default is the first 10 lines and to display all, set <i>n</i> to -1.</p>
+<pre>0:      T02_ref 32044   R       0.97    27      1000000000      Crisp   MPS     S0      SET     UM      U0       CTTGATTTCT AGTTGAATAT GTTGGTA
+1:      T02_ref 26231   F       0.97    27      999999999       Crisp   MPS     S0      SET     UM      U0       GTTATGGAGT GAAATGTTAG CCTTTCA
+2:      T02_ref 78954   F       0.97    27      999999998       Crisp   MPS     S0      SET     UM      U0       GCTGTTTGGT ATCTTTAATT ATATTGA
+3:      T02_ref 2524    R       0.97    27      999999997       Crisp   MPS     S0      SET     UM      U0       TGAGAATTAA ATGAGGTTCT GTATACA
+4:      T02_ref 70625   R       0.95    27      999999996       GQ      MPS     S0      SET     UM      U0       TAGAGGTCCC CGCAGACATC GCCCTCC
+5:      T02_ref 110707  F       0.97    27      999999995       Crisp   MPS     S0      SET     UM      U1 26    TTTCAAGTAG GGTATTAAAG TTTTCTA</pre>
+<p>Above is the information for the first 6 matches in this alignment.&nbsp; The columns are as follows: read id, reference aligned to, reference coordinate of alignment start, forward or reverse strand, weight of read (see paper for further details), read length, alignment id, quality of read ("Crisp", "LQ" for low quality, or "GQ" - see paper for further details), MPS (most probable sequence) or RS, read end (if a PET run, can be either S0 or S1), SET (single end tag) or PET (paired end tag), UM = unique match or MM=multiple match, U0 (no mismatch bases) or U1 (1 base mismatch; a number follows with the location of the mismatch), sequence of aligned read.<br /></p>
+<p><br /></p>
+<p>To display the first <i>n</i> reads from the oligo input table (before alignment)
+s.ol0:&nbsp; <br /></p>
+<pre>java -cp . -Xmx1G JavaCode/display  input/T02 data/OUT/T02/s.ol0/ <i>n</i></pre>
+<p>If n is larger than the number of reads in the oligo table, the full
+oligo table is displayed.&nbsp; This can be used to convert an oligo table to a text
+format.&nbsp; The contents of this file is sorted lexographically. <br /></p>
+<pre>994:    0.23    27      999998827       GQ      RS      S0       AATCGCTTGA ACCTGAGAGG TGGAAGA
+995:    0.74    27      999998827       GQ      MPS     S0       AATCGCTTGA ACCTGAGAGG TGGAAGT
+996:    0.97    27      999999582       Crisp   MPS     S0       AATCTCCCAG CGTGGTTTAA TCAGACG
+997:    0.0     27      999996886       GQ      RS      S0       AATCTCCCCA GTGACACTTC TCCAAGG
+998:    0.05    27      999996886       GQ      RS      S0       AATCTCCCCA GTGACACTTC TCCCAGG
+999:    0.04    27      999996886       GQ      RS      S0       AATCTCCCCA GTGTCACTTC TCCAAGG</pre>
+Above is extracted from the sample oligo table.&nbsp; <br /><br /><br />Final list of SNPs produced by SNPsPrediction is located at:&nbsp; data/OUT/T02/Results/ScoreResults/T02_ref.fa.snp.&nbsp; For this small test dataset, eight SNPs were found.<br />
+<pre>SNPid  Location map    cmCount  mCount  nmCount wSNP%   cSNP%   ncSNP%  cmScore nmScore Ref     MPB     Pm(A)   Pm(C)   Pm(G)   Pm(T)   Pnm(A)  Pnm(C)  Pnm(G)  Pnm(T)
+-----   -----   -----  ------   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----   -----
+0       11907   54      0       0       2       99.7%   100.0%  0.0%    0.0     1.94    A       G       0.0     0.0     0.0     0.0     0.09    0.09    99.7    0.09
+1       45899   54      0       0       3       99.7%   100.0%  0.0%    0.0     1.95    A       T       0.0     0.0     0.0     0.0     0.09    0.09    0.09    99.7
+2       49087   54      0       0       3       99.7%   100.0%  0.0%    0.0     2.62    C       T       0.0     0.0     0.0     0.0     0.09    0.09    0.09    99.7
+3       66665   54      0       0       2       99.7%   100.0%  0.0%    0.0     1.25    C       T       0.0     0.0     0.0     0.0     0.09    0.09    0.09    99.7
+4       88024   54      0       0       2       99.7%   100.0%  0.0%    0.0     1.77    G       A       0.0     0.0     0.0     0.0     99.7    0.09    0.09    0.09
+5       94702   54      0       0       2       99.7%   100.0%  0.0%    0.0     1.12    A       T       0.0     0.0     0.0     0.0     0.09    0.09    0.09    99.7
+6       107700  54      0       0       4       99.7%   100.0%  0.0%    0.0     3.73    T       C       0.0     0.0     0.0     0.0     0.09    99.7    0.09    0.09
+7       111483  54      0       0       3       99.7%   100.0%  0.0%    0.0     2.9     G       A       0.0     0.0     0.0     0.0     99.7    0.09    0.09    0.09
+8       111790  54      0       0       4       99.33%  100.0%  0.0%    0.0     3.85    C       T       0.0     0.0     0.0     0.0     0.09    0.09    0.46    99.33</pre>
+Please see <a class="external-link" href="../../../../downloads/slider/SNPsTable.pdf">SNPs Table</a> for a description of this file.<br /><br /><a class="external-link" href="../../../../downloads/slider/ExpandedTable3.pdf">Expanded Table 3</a> (from the Slider paper) is available which includes extended information on the alignment accuracy of Slider compared to Eland and RMAP.<br /><br /><br />
+<h3>Full datasets</h3>
+<br />Two larger datasets are included here for Slider testing:<br /><a class="external-link" href="../../../../downloads/slider/T02_full_data.tar.gz">http://www.bcgsc.ca/downloads/slider/T02_full_data.tar.gz</a><br /><a class="external-link" href="../../../../downloads/slider/CT302_full_data.tar.gz">http://www.bcgsc.ca/downloads/slider/CT302_full_data.tar.gz</a><br /><br /><br /><br /><br />
+
+
+
+        <div class="visualClear"></div>
+
+        <div>
+
+    <div class="documentByLine">
+
+        <span>
+        Last modified
+        </span>
+        2008-11-04 13:21
+
+        
+
+        
+
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+                    
+                      
+                 
+    
+        
+    
+
+                    
+
+                  </div>
+
+                </div>
+
+              
+            </td>
+            
+
+          </tr>
+        </tbody>
+      </table>
+	  
+      </div>
+
+	<div style="margin: 0em 3em 0em 3em;">
+	  <table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td width="46" style="background-color: #F1F5F7; vertical-align: top;"><img
+    src="http://www.bcgsc.ca/bottom_left_page.gif" alt="" /></td>
+			<td style="background-image: url('/bottom_middle_page.gif');" width="99%"><img
+    src="http://www.bcgsc.ca/bottom_middle_page.gif" alt="" /></td>
+		    <td width="46" style="background-color: #F1F5F7; vertical-align: top;"><img
+    src="http://www.bcgsc.ca/bottom_right_page.gif" alt="" /></td>
+		</tr>
+	  </table>
+	</div>
+	  
+      <div class="visualClear"><!-- --></div>
+
+
+      <hr class="netscape4" />
+
+      
+
+        <div id="portal-footer">
+
+<p style="font-size: 85%;">
+  <a href="/about/contacts">Contacts</a> | <a href="/about/gsc_map">Locations</a>
+ | <a href="/sitemap">Site Map</a>
+ | <a href="/about/about_web_site">About this Web Site</a>
+ | Phone: 604 707-5900
+</p>
+
+<p>
+<a href="http://www.bccancer.bc.ca">
+<img src="/bcca_logo.png" alt="" style="margin-top: 1em; margin-bottom: 0.5em;" /></a>
+</p>
+
+<p>
+  Funded by <a href="http://www.bccancerfoundation.com/">BC Cancer Foundation</a> Donors
+</p>
+
+
+
+</div>
+
+        <div id="portal-colophon">
+
+      
+
+    </div>
+      
+
+    </div>
+
+</body>
+</html>
+

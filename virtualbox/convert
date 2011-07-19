@@ -1,0 +1,3 @@
+IN=$1
+qemu-img convert $IN.img -O vdi $IN.vdi
+chown saulo:saulo $IN.vdi

@@ -1,0 +1,569 @@
+#!/usr/bin/perl -w
+use strict;
+use loadconf;
+
+my $setupFile = $ARGV[0];
+die "USAGE: $0 <SETUP FILE.XML>"          if ( !    $setupFile );
+die "SETUP FILE $setupFile DOESNT EXISTS" if ( ! -f $setupFile );
+###################################
+#PROGRAMS SETUP
+###################################
+my %pref = &loadconf::loadConf($setupFile);
+&loadconf::checkNeeds(
+	'mkdbSetup.html',		'mkdbSetup.blast2xml',		'mkdbSetup.xmlMerger',		
+	'mkdbSetup.xml2csv',	'mkdbSetup.pca',			'mkdbSetup.pcaR'
+);
+
+
+my $html         = $pref{'mkdbSetup.html'};
+my $blast2xml    = $pref{'mkdbSetup.blast2xml'};
+my $xmlMerger    = $pref{'mkdbSetup.xmlMerger'};
+my $xml2csv      = $pref{'mkdbSetup.xml2csv'};
+my $pca          = $pref{'mkdbSetup.pca'};
+my $pcaR         = $pref{'mkdbSetup.pcaR'};
+
+
+
+###################################
+#LOAD SETUP
+###################################
+my %pref = &loadconf::loadConf($setupFile);
+&loadconf::checkNeeds(
+	'serious',		'doClean',		'doCleanDb',
+
+	'mkDb',			'mkAlias',
+	'blast',
+
+	'mkXml',		'mergeXml',		'convertHtml',	'convertCsv',
+	'mkPca',		'mkPcaR'
+);
+
+my $serious     = $pref{serious}         || 0;
+my $clean       = $pref{doClean}         || 0;
+my $cleanDb     = $pref{doCleanDb}       || 0;
+my $mkDb        = $pref{mkDb}            || 0;
+my $mkAlias     = $pref{mkAlias}         || 0;
+my $blast       = $pref{blast}           || 0;
+my $mkXml       = $pref{mkXml}           || 0;
+my $mergeXml    = $pref{mergeXml}        || 0;
+my $convertHtml = $pref{convertHtml}     || 0;
+my $convertCsv  = $pref{convertCsv}      || 0;
+my $mkPca       = $pref{mkPca}           || 0;
+my $mkPcaR      = $pref{mkPcaR}          || 0;
+
+
+###################################
+#FOLDERS SETUP
+###################################
+my $dbFolder      = $pref{dbFolder     } || 'db'         ;
+my $fastaFolder   = $pref{fastaFolder  } || 'fasta'      ;
+my $blastFolder   = $pref{blastFolder  } || 'blast'      ;
+my $xmlFolder     = $pref{xmlFolder    } || 'xml'        ;
+my $finalFolder   = $pref{finalFolder  } || 'out'        ;
+my $inExpFolder   = $pref{inExpFolder  } || 'query_exp'  ;
+my $inFastaFolder = $pref{inFastaFolder} || 'query_fasta';
+
+die  "FOLDER ", $dbFolder      ," DOESNT EXISTS" if ( ! -d $dbFolder     );
+die  "FOLDER ", $fastaFolder   ," DOESNT EXISTS" if ( ! -d $fastaFolder  );
+die  "FOLDER ", $blastFolder   ," DOESNT EXISTS" if ( ! -d $blastFolder  );
+die  "FOLDER ", $xmlFolder     ," DOESNT EXISTS" if ( ! -d $xmlFolder    );
+die  "FOLDER ", $finalFolder   ," DOESNT EXISTS" if ( ! -d $finalFolder  );
+warn "FOLDER ", $inExpFolder   ," DOESNT EXISTS" if ( ! -d $inExpFolder  );
+die  "FOLDER ", $inFastaFolder ," DOESNT EXISTS" if ( ! -d $inFastaFolder );
+
+
+
+&loadconf::checkNeeds(
+	'inFiles'
+);
+my $inFilesStr = $pref{inFiles} || die "NO INPUT FILES DEFINED";
+
+
+my $blast_evalue;
+my $blast_threads;
+my $blast_task;
+my $blast_identity;
+my $blast_desc;
+my $blast_short;
+my $blast_alias;
+if ( $blast )
+{
+
+	&loadconf::checkNeeds(
+		'blast.evalue',
+		'blast.threads',
+		'blast.task',
+		'blast.identity',
+		'blast.desc',
+		'blast.doAlias',
+
+	);
+
+	$blast_short    = $pref{'blast.short'}    || 0;
+	$blast_evalue   = $pref{'blast.evalue'}   || 10;
+	$blast_task     = $pref{'blast.task'}     || 'blastn';
+	$blast_identity = $pref{'blast.identity'} || '50';
+	$blast_desc     = $pref{'blast.desc'}     || '';
+	$blast_threads  = $pref{'blast.threads'}  || 6;
+	$blast_alias    = $pref{'blast.doAlias'}  || 0;
+}
+
+my $blast_short_gapOpen;
+my $blast_short_gapExtend;
+my $blast_short_wordSize;
+my $blast_short_penalty;
+my $blast_short_reward;
+my $blast_short_windowSize;
+my $blast_short_minRawGapScore;
+my $blast_short_xDrop;
+if ( $blast_short )
+{
+	&loadconf::checkNeeds(
+		'blast.short.gapOpen',
+		'blast.short.gapExtend',
+		'blast.short.wordSize',
+		'blast.short.penalty',
+		'blast.short.reward',
+		'blast.short.windowSize',
+		'blast.short.minRawGapScore',
+		'blast.short.xDrop'
+	);
+
+	$blast_short_gapOpen        = $pref{'blast.short.gapOpen'}        ||  2;
+	$blast_short_gapExtend      = $pref{'blast.short.gapExtend'}      ||  2;
+	$blast_short_wordSize       = $pref{'blast.short.wordSize'}       ||  4;
+	$blast_short_penalty        = $pref{'blast.short.penalty'}        || -3;
+	$blast_short_reward         = $pref{'blast.short.reward'}         ||  2;
+	$blast_short_windowSize     = $pref{'blast.short.windowSize'}     ||  4;
+	$blast_short_minRawGapScore = $pref{'blast.short.minRawGapScore'} || 10;
+	$blast_short_xDrop          = $pref{'blast.short.xDrop'}          || 10;
+	$blast_desc                .=	" GAPOPEN "           . $blast_short_gapOpen        .
+									" GAPEXTEND "         . $blast_short_gapExtend      .
+									" WORDSIZE "          . $blast_short_wordSize       .
+									" PENALTY "           . $blast_short_penalty        .
+									" REWARD "            . $blast_short_reward         .
+									" WINDOWSIZE "        . $blast_short_windowSize     .
+									" MINRAWGAPPEDSCORE " . $blast_short_minRawGapScore .
+									" XDROPGAP "          . $blast_short_xDrop          .
+									" NOGREEDY";
+}
+
+my $expression;
+if ( $mergeXml )
+{
+	&loadconf::checkNeeds('expression');
+	$expression  = $pref{expression}    || die "NO EXPRESSION FILE DEFINED";
+	if ( $expression  )
+	{
+		die "EXPRESSION FILE $inExpFolder/$expression DOESNT EXISTS" if ( ! -f "$inExpFolder/$expression" );
+	}
+}
+
+my $pcaPar = '';
+if ( $mkPca )
+{
+	foreach my $key (keys %pref)
+	{
+		$pcaPar .= $pref{$key} if (index($key, "pcaPar.") != -1);
+	}
+}
+
+
+
+
+
+###################################
+#CHECK SETUP
+###################################
+my @inFiles;
+for my $file (split(",",$inFilesStr))
+{
+	die "INPUT FASTA FILE $inFastaFolder/$file.fasta DOESNT EXISTS" if ( ! -f "$inFastaFolder/$file.fasta" );
+	push(@inFiles, $file);
+}
+
+
+my @db;
+my @alias;
+foreach my $key (sort keys %pref)
+{
+	if ($key =~ /^(\S+)\.\1(\d+)\.(\S+)/)
+	{
+		my $prefix = $1;
+		my $count  = $2;
+		my $type   = $3;
+
+		if ($prefix eq 'db')
+		{
+			#print "DB :: PREFIX $prefix COUNT $count TYPE $type => $pref{$key}\n";
+			$db[$2]{$3} = $pref{$key};
+		}
+		elsif ($prefix eq 'alias')
+		{
+			#print "ALIAS :: PREFIX $prefix COUNT $count TYPE $type => $pref{$key}\n";
+			$alias[$2]{$3} = $pref{$key};
+		}
+	}
+}
+
+die "NO INPUT DATABASE INSERTED" if ( ! @db );
+
+
+for ( my $d = 0; $d < @db; $d++ )
+{
+	my $nfo       = $db[$d];
+	my $inFasta   = $nfo->{fileName} || die "FILE NAME NOT INFORMED FOR DB";
+	my $inDbName  = $nfo->{dbName}   || die "DB NAME   NOT INFORMED FOR DB";
+	my $inDbTitle = $nfo->{title}    || die "DB TITLE  NOT INFORMED FOR DB";
+	my $inDbTaxId = $nfo->{taxId}    || die "TAX ID    NOT INFORMED FOR DB";
+
+	die "INPUT DB FILE $fastaFolder/$inFasta DOESTN EXISTS" if ( ! -f "$fastaFolder/$inFasta" );
+}
+
+
+
+
+
+
+
+
+
+
+###################################
+#LOGIC
+###################################
+
+foreach my $inFile ( @inFiles )
+{
+
+	&fixFasta($inFastaFolder, $inFile);
+
+	if ( $clean )
+	{
+		&clean($inFile);
+		$clean = 2;
+		if ( $cleanDb == 1)
+		{
+			$cleanDb = 2;
+		}
+	}
+
+
+	if ( $mkDb == 1)
+	{
+		print "MAKING DB\n";
+		for ( my $d = 0; $d < @db; $d++ )
+		{
+			my $nfo       = $db[$d];
+			my $inFasta   = $nfo->{fileName} || die "NO FILE NAME INFORMED FOR DB";
+			my $inDbName  = $nfo->{dbName}   || die "NO DB NAME   INFORMED FOR DB";
+			my $inDbTitle = $nfo->{title}    || die "NO DB TITLE  INFORMED FOR DB";
+			my $inDbTaxId = $nfo->{taxId}    || die "NO TAX ID    INFORMED FOR DB";
+
+			&mkdb($inFasta, $inDbName, $inDbTitle, $inDbTaxId);
+		}
+
+		$mkDb = 2;
+	}
+
+	if ( $mkAlias == 1)
+	{
+		print "MAKING ALIAS\n";
+		for ( my $a = 0; $a < @alias; $a++ )
+		{
+			my $nfo        = $alias[$a];
+			my $inDbs      = $nfo->{dbs}    || die "NO INPUT DBS INFORMED FOR ALIAS";
+			my $outDbName  = $nfo->{dbName} || die "NO DB NAME   INFORMED FOR ALIAS";
+			my $outDbTitle = $nfo->{title}  || die "NO DB TITLE  INFORMED FOR ALIAS";
+			&mkalias($inDbs, $outDbName, $outDbTitle);
+		}
+		$mkAlias = 2;
+	}
+
+
+	if ( $blast )
+	{
+		foreach my $db (@db)
+		{
+			my $dbName = $db->{dbName};
+			&blast($inFastaFolder, $inFile, $dbName);
+		}
+	}
+
+	if ( $blast_alias )
+	{
+		foreach my $alias (@alias)
+		{
+			my $dbName = $alias->{dbName};
+			&blast($inFastaFolder, $inFile, $dbName);
+		}
+	}
+
+	if ( $mkXml )
+	{
+		foreach my $db (@db)
+		{
+			my $dbName = $db->{dbName};
+			&convXml($inFile, $dbName);
+		}
+
+		foreach my $alias (@alias)
+		{
+			my $dbName = $alias->{dbName};
+			&convXml($inFile, $dbName);
+		}
+	}
+
+
+	if ( $mergeXml )
+	{
+		print "MERGING XML FROM FOLDER $xmlFolder TO FOLDER $finalFolder INFILE $inFile\n";
+		my $COMMAND = "$xmlMerger $xmlFolder $finalFolder $inFile";
+		print "\t$COMMAND\n";
+
+		if ( $serious )
+		{
+			print `$COMMAND`;
+		}
+	}
+
+
+	if ( $convertHtml )
+	{
+		if ( $mergeXml )
+		{
+			&convHtml("$finalFolder/$inFile\_blast_merged_blast_all_gene");
+			&convHtml("$finalFolder/$inFile\_blast_merged_blast_all_org");
+		}
+
+		#if ( $mkXml )
+		#{
+		#	foreach my $db (@db)
+		#	{
+		#		my $dbName = $db->{dbName};
+		#		&convHtml("$xmlFolder/$inFile\_$dbName.blast_org");
+		#		&convHtml("$xmlFolder/$inFile\_$dbName.blast_gene");
+		#	}
+		#
+		#	foreach my $alias (@alias)
+		#	{
+		#		my $dbName = $alias->{dbName};
+		#		my $fh = "";
+		#		&convHtml("$xmlFolder/$inFile\_$dbName.blast_org");
+		#		&convHtml("$xmlFolder/$inFile\_$dbName.blast_gene");
+		#	}
+		#}
+	}
+
+
+	if ( $convertCsv )
+	{
+		my $INTX="$finalFolder/$inFile\_blast_merged_blast_all_gene.xml";
+		print "CONVERTING XML $INTX TO CSV USING $inExpFolder/$expression\n";
+		my $COMMAND = "$xml2csv $INTX $inExpFolder/$expression";
+		print "\t$COMMAND\n";
+
+		if ( $serious )
+		{
+			die "FILE $INTX DOESNT EXISTS" if ( ! -f $INTX );
+			die "FILE $inExpFolder/$expression DOESNT EXISTS" if ( ! -f "$inExpFolder/$expression" );
+			print `$COMMAND`;
+
+		}
+	}
+
+
+	if ( $mkPca )
+	{
+		my $INTX = "$finalFolder/$inFile\_blast_merged_blast_all_gene.xml.EXP.$expression.csv";
+		print "RUNNING PCA ON CSV $INTX USING PARAMETERS :: $pcaPar\n";
+		my $COMMAND = "$pca $INTX $pcaPar";
+		print "\t$COMMAND\n";
+
+		if ( $serious )
+		{
+			die "FILE $INTX DOESNT EXISTS" if ( ! -f $INTX );
+			print `$COMMAND`;
+		}
+
+		if ( $mkPcaR )
+		{
+			my $INTR="$INTX\_PCA_00_raw.txt";
+			print "RUNNING PCA R ON CSV $INTR\n";
+			my $COMMANDR = "$pcaR $INTR";
+			print "\t$COMMANDR\n";
+
+			if ( $serious )
+			{
+				die "FILE $INTR DOESNT EXISTS" if ( ! -f $INTR );
+				print `$COMMANDR`;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+###################################
+#FUNCTIONS
+###################################
+
+sub fixFasta{
+	my $inFolder = $_[0];
+	my $input    = $_[1];
+	my $inFile   = "$inFolder/$input.fasta";
+	print "\tFIXING FASTA $inFile\n";
+	if ( -f "$inFile.old" ) { warn "FILE '$inFile' NOT FIXED. APARENTLY ALREADY FIXED"; return 0 };
+
+	open INFILE,  "<$inFile"     or die "COULD NOT OPEN INPUT FILE '$inFile' FOR FIXING\n";
+	open OUTFILE, ">$inFile.tmp" or die "COULD NOT OPEN INPUT FILE '$inFile.tmp' FOR FIXING\n";
+
+	while (<INFILE>)
+	{
+		chomp;
+		if (/^\>/)
+		{
+			s/\s/\_/g;
+			s/\_+/\_/g;
+			print OUTFILE $_, "\n";
+		} else {
+			print OUTFILE $_, "\n";
+		}
+	}
+	close INFILE;
+	close OUTFILE;
+	rename "$inFile"    , "$inFile.old";
+	rename "$inFile.tmp", "$inFile";
+}
+
+sub mkdb     {
+	my $inFasta = $_[0];
+    my $outName = $_[1];
+    my $title   = $_[2];
+	my $taxId   = $_[3];
+
+	print "CREATING BLAST DB FOR $fastaFolder/$inFasta WITH NAME $outName TITLE $title TAXID $taxId\n";
+	my $COMMAND = "makeblastdb -in $fastaFolder/$inFasta -dbtype nucl -title \"$title\" -out $dbFolder/$outName -taxid $taxId -logfile $fastaFolder/$inFasta.log";
+	print "\t$COMMAND\n";
+
+	if ( $serious )
+	{
+		die "FILE $fastaFolder/$inFasta DOESNT EXISTS" if ( ! -f "$fastaFolder/$inFasta" );
+		print `$COMMAND`;
+	}
+
+	print "\n";
+}
+
+sub mkalias  {
+	my $inDb  = $_[0];
+	my $outDb = $_[1];
+	my $title = $_[2];
+
+	print "CREATING BLAST DB ALIAS FOR $inDb AS $outDb TITLED $title\n";
+	my $COMMAND = "blastdb_aliastool -dblist \"$inDb\" -dbtype nucl -out $dbFolder/$outDb -title \"$title\" -logfile $outDb.log";
+	print "\t$COMMAND\n";
+
+	if ( $serious )
+	{
+		print `$COMMAND`;
+	}
+
+	print "\n";
+}
+
+sub blast    {
+	my $inFolder = $_[0];
+	my $inFile   = $_[1];
+	my $Db       = $_[2];
+
+	my $outFile  = "$inFile\_$Db.blast";
+	my $outBlast = "$blastFolder/$outFile";
+
+	print "BLASTING $inFolder/$inFile AGAINST $Db EVALUE $blast_evalue THREAD $blast_threads TASKS $blast_task IDENTITY $blast_identity OUT $outBlast\n";
+	my $COMMAND = "blastn -task $blast_task -db $dbFolder/$Db -query $inFolder/$inFile.fasta -out $outBlast  -evalue $blast_evalue -num_threads $blast_threads -perc_identity $blast_identity";
+
+	if ( $blast_short )
+	{
+		$COMMAND .= " -gapopen $blast_short_gapOpen -gapextend $blast_short_gapExtend -word_size $blast_short_wordSize -penalty $blast_short_penalty -reward $blast_short_reward -window_size $blast_short_windowSize -min_raw_gapped_score $blast_short_minRawGapScore -xdrop_gap $blast_short_xDrop -no_greedy ";
+	}
+
+	#blastn         -task blastn -db db/cgR265        -query 59dup.fasta    -out 59dup_cgR265_id40_long.blast -evalue 100      -num_threads 3        -perc_identity 50 -gapopen 2 -gapextend 2 -word_size 7 -penalty -2 -reward 2
+	#blastn         -task blastn -db db/cgR265        -query 59dup.fasta    -out 59dup_cgR265_id40_long.blast -evalue 10       -num_threads 3        -perc_identity 50 -gapopen 2 -gapextend 2 -word_size 4 -penalty -3 -reward 2  -no_greedy -window_size 4 -min_raw_gapped_score 20 -xdrop_gap 50
+	print "\t$COMMAND\n";
+
+	if ( $serious )
+	{
+		die "FILE $inFolder/$inFile.fasta DOESNT EXISTS" if ( ! -f "$inFolder/$inFile.fasta" );
+		print `$COMMAND`;
+	}
+
+	print "\n";
+}
+
+
+
+sub convXml  {
+	my $inFile  = $_[0];
+	my $db      = $_[1];
+	my $outFile ="$inFile\_$db.blast";
+
+	print "CONVERTING $inFile DATABASE $db FROM $blastFolder/$outFile FILE TO XML\n";
+
+	my $COMMAND = "$blast2xml $setupFile $blastFolder $outFile $xmlFolder \"$blast_desc\"";
+	print "\t$COMMAND\n";
+
+	if ( $serious )
+	{
+		if ( ! -f "$blastFolder/$outFile" ) { die "\tCOULD NOT FIND $blastFolder/$outFile TO BE CONVERTED TO XML"; };
+		print `$COMMAND`;
+	}
+
+	print "\n";
+}
+
+sub convHtml {
+	my $inXmlFile = $_[0];
+
+	print "CONVERTING XML $inXmlFile.xml TO HTML\n";
+	my $COMMANDX = "$html -IN $inXmlFile.xml -OUT $inXmlFile.html";
+	print "\t$COMMANDX\n";
+
+	if ( $serious )
+	{
+		die "FILE $inXmlFile.xml DOESNT EXISTS" if ( ! -f "$inXmlFile.xml" );
+		print `$COMMANDX`;
+	}
+}
+
+sub clean    {
+	my $inFile = $_[0];
+	print "CLEANING THE MESS OF $inFile\n";
+
+	if ( $cleanDb == 1)
+	{
+		print "CLEANING THE MESS OF $inFile\n";
+		unlink glob("$dbFolder/*");
+		unlink glob("$fastaFolder/*.log");
+	}
+
+	if ( $clean == 1)
+	{
+		unlink glob("$blastFolder/$inFile*");
+		unlink glob("$xmlFolder/$inFile*");
+		unlink glob("$finalFolder/$inFile*");
+	}
+
+	print "\n";
+}
+
+1;

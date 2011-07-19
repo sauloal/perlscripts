@@ -1,0 +1,35 @@
+#!/usr/bin/perl -w
+use strict;
+my $infile=shift;
+my $outdir=shift;
+
+die "NO IMPUT FILE DEFINED"               if ( !    $infile );
+die "NO OUTPUT FOLDER DEFINED"            if ( !    $outdir );
+die "INPUT FILE $infile DOESNT EXISTS"    if ( ! -f $infile );
+die "OUTPUT FOLDER $outdir DOESNT EXISTS" if ( ! -d $outdir );
+
+open(my $f, "<", $infile) or die $!;
+my $buf;
+read($f, $buf, 348);
+close $f;
+
+my $vditype=substr($buf, 76, 1);
+if($vditype ne "\002") {
+#        die "type is not fixed size";
+}
+
+# this is the start of the HDD (usually containing the MBR)
+my $offs=unpack("L", substr($buf, 344, 4));
+
+# first partition usually starts at sector 63 of a hard-disk
+# see fdisk -lu for exact values
+$offs+=63*512;
+
+my $cmd = "mount -r -o loop,offset=$offs \"$infile\" \"$outdir\"";
+
+print "\tOFFSET: $offs\n";
+print "\tDIR   : $outdir\n";
+print "\tFILE  : $infile\n";
+print "\tCM D  : $cmd\n";
+
+#system $cmd;

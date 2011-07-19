@@ -1,0 +1,23 @@
+INSTALLIN FLEXARRAY
+
+FLEXARRAY MICROARRAY ANALYZER WITH R
+
+create a link to:
+
+...Rgui.exe" "--internet2"
+
+update the packages and download specific packages
+chooseCRANmirror()
+setRepositories()
+update.packages(ask='graphics')
+source("http://bioconductor.org/biocLite.R")
+	biocLite("affy")
+biocLite("gcrma")
+biocLite("LPE")
+biocLite("simpleaffy")
+biocLite("plier")
+biocLite("multtest")
+biocLite("LMGene")
+biocLite("siggenes")
+utils:::menuInstallPkgs()
+biocLite("lumi")

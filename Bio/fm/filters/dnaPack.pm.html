@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+<title>/home/saulo/Desktop/rolf/filters/dnaPack.pm</title>
+<style type="text/css">
+body.default {
+    font-family: TlwgTypewriter;
+    color: #000000;
+    background-color: #ffffff;
+    font-size: 19.5px;
+    font-weight: bold;
+    font-style: normal;
+}
+span.data_sections {
+}
+span.bracebad {
+    color: #c86464;
+}
+span.stdin {
+}
+span.stdout {
+}
+span.operators {
+    color: #781f87;
+}
+span.linenumbers {
+    color: #555555;
+}
+span.preprocessor {
+    color: #696969;
+}
+span.comments {
+    color: #696969;
+    font-style: italic;
+}
+span.keywords {
+    color: #871f78;
+}
+span.hashes {
+}
+span.regex {
+    color: #c86400;
+}
+span.functions {
+    color: #008b8b;
+}
+span.errors {
+}
+span.default {
+}
+span.here_documents {
+    color: #232383;
+}
+span.identifiers {
+}
+span.indent_guides {
+    color: #808080;
+}
+span.symbol_tables {
+}
+span.strings {
+    color: #23238e;
+}
+span.arrays {
+}
+span.bracehighlight {
+    color: #c86464;
+}
+span.stderr {
+    color: #0000ff;
+    font-style: italic;
+}
+span.variables {
+}
+span.control_characters {
+}
+span.numbers {
+    color: #8b0000;
+}
+
+</style>
+</head>
+<body class="default"><p>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">#!/usr/bin/perl&nbsp;-w</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">use</span><span class="default">&nbsp;</span><span class="identifiers">strict</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">package</span><span class="default">&nbsp;</span><span class="identifiers">dnaPack</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$sysBits</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">8</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;unPackDNA
+</span><br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">0</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$length</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">1</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$strD</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="variables">$length</span><span class="default">&nbsp;</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">++)</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$strD</span><span class="default">&nbsp;</span><span class="operators">.=</span><span class="default">&nbsp;</span><span class="keywords">vec</span><span class="operators">(</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">2</span><span class="default">&nbsp;</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$strD</span><span class="default">&nbsp;</span><span class="operators">=~</span><span class="default">&nbsp;</span><span class="regex">tr/0123/ACGT/</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="variables">$strD</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;packDNA
+</span><br /><span class="linenumbers">&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$inputD</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">0</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$inputD</span><span class="default">&nbsp;</span><span class="operators">=~</span><span class="default">&nbsp;</span><span class="regex">tr/ACGT/0123/</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">length</span><span class="operators">(</span><span class="variables">$inputD</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="default">&nbsp;</span><span class="operators">x</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="variables">$n</span><span class="operators">/</span><span class="numbers">4</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;29&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">++)</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;31&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;32&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">vec</span><span class="operators">(</span><span class="variables">$bin</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="numbers">2</span><span class="operators">)</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">substr</span><span class="operators">(</span><span class="variables">$inputD</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">1</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;36&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;37&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;38&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;39&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;40&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;packDNA0
+</span><br /><span class="linenumbers">&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$inputD</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">0</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$inputD</span><span class="default">&nbsp;</span><span class="operators">=~</span><span class="default">&nbsp;</span><span class="regex">tr/ACGT/0123/d</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;45&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">length</span><span class="operators">(</span><span class="variables">$inputD</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;46&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;47&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="strings">''</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;48&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="arrays">@bytes</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;49&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">print</span><span class="default">&nbsp;</span><span class="strings">"INPU&nbsp;</span><span class="variables">$inputD</span><span class="strings">\n"</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">+=</span><span class="default">&nbsp;</span><span class="numbers">4</span><span class="operators">)</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;51&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;52&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$nuc4</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">substr</span><span class="operators">(</span><span class="variables">$inputD</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">4</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;53&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">print</span><span class="default">&nbsp;</span><span class="strings">"N&nbsp;</span><span class="variables">$n</span><span class="strings">&nbsp;P&nbsp;</span><span class="variables">$p</span><span class="strings">&nbsp;NUC4&nbsp;</span><span class="variables">$nuc4</span><span class="strings">\n"</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$byte</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;55&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$pp</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$pp</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="numbers">4</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$pp</span><span class="operators">++)</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;56&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;57&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$nucD</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">substr</span><span class="operators">(</span><span class="variables">$nuc4</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$pp</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">1</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;58&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;my&nbsp;$dig&nbsp;&nbsp;=&nbsp;$corrArray[$nucD][$pp&nbsp;+&nbsp;1];</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;59&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;"\tNUCD&nbsp;$nucD&nbsp;DIG&nbsp;$dig\n";</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$byte&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;$byte&nbsp;|&nbsp;$dig;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;61&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;62&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br /><span class="linenumbers">&nbsp;&nbsp;63&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">print</span><span class="default">&nbsp;</span><span class="strings">"BYTE&nbsp;</span><span class="variables">$byte</span><span class="strings">\n"</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;64&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">push</span><span class="operators">(</span><span class="arrays">@bytes</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$byte</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;65&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;66&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">print</span><span class="default">&nbsp;</span><span class="keywords">scalar</span><span class="operators">(</span><span class="arrays">@bytes</span><span class="operators">),</span><span class="default">&nbsp;</span><span class="strings">"&nbsp;BYTES&nbsp;\n"</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;67&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$b</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$b</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="arrays">@bytes</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$b</span><span class="operators">++)</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;68&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;69&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">print</span><span class="default">&nbsp;</span><span class="strings">"\t\tB&nbsp;</span><span class="variables">$b</span><span class="strings">&nbsp;&gt;&nbsp;</span><span class="variables">$bytes</span><span class="strings">[</span><span class="variables">$b</span><span class="strings">]\n"</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;70&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">vec</span><span class="operators">(</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$b</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">8</span><span class="default">&nbsp;</span><span class="operators">)</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$bytes</span><span class="operators">[</span><span class="variables">$b</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;71&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;72&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">print</span><span class="default">&nbsp;</span><span class="strings">"</span><span class="variables">$bin</span><span class="strings">&nbsp;OUT&nbsp;"</span><span class="operators">,</span><span class="keywords">length</span><span class="operators">(</span><span class="variables">$bin</span><span class="operators">),</span><span class="strings">"bytes\n\n"</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;73&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;74&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;75&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;76&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;77&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;unPackDNA2
+</span><br /><span class="linenumbers">&nbsp;&nbsp;78&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;79&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">0</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;80&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$length</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">1</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;81&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$strD</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;82&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$strS</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;83&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;84&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$length</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;85&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br /><span class="linenumbers">&nbsp;&nbsp;86&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="default">&nbsp;</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">++)</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;87&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;88&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$strD</span><span class="default">&nbsp;</span><span class="operators">.=</span><span class="default">&nbsp;</span><span class="keywords">vec</span><span class="operators">(</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">2</span><span class="default">&nbsp;</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;89&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;90&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;91&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$strS</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$strD</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;92&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$strS</span><span class="default">&nbsp;</span><span class="operators">=~</span><span class="default">&nbsp;</span><span class="regex">tr/0123/ACGT/</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;93&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;94&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="variables">$strS</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;95&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;97&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;&nbsp;98&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;packDNA2
+</span><br /><span class="linenumbers">&nbsp;&nbsp;99&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;100&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$input</span><span class="default">&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">0</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;101&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$inputD</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$input</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;102&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$inputD</span><span class="default">&nbsp;</span><span class="operators">=~</span><span class="default">&nbsp;</span><span class="regex">tr/ACGT/0123/d</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;103&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;104&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">length</span><span class="operators">(</span><span class="variables">$inputD</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;105&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;106&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="strings">''</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;107&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;108&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="default">&nbsp;</span><span class="operators">&lt;</span><span class="default">&nbsp;</span><span class="variables">$n</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">++)</span>
+<br /><span class="linenumbers">&nbsp;109&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;110&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$nucD</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="keywords">substr</span><span class="operators">(</span><span class="variables">$inputD</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">1</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;111&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;112&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">vec</span><span class="operators">(</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$p</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="numbers">2</span><span class="default">&nbsp;</span><span class="operators">)</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$nucD</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;113&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;114&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br /><span class="linenumbers">&nbsp;115&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="variables">$bin</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;116&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;117&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;118&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;119&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;log_base&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;120&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="variables">$base</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$value</span><span class="operators">)</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="arrays">@_</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;121&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="keywords">log</span><span class="operators">(</span><span class="variables">$value</span><span class="operators">)/</span><span class="keywords">log</span><span class="operators">(</span><span class="variables">$base</span><span class="operators">);</span>
+<br /><span class="linenumbers">&nbsp;122&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;123&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;124&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;125&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">sub</span><span class="identifiers">&nbsp;nextBaseTwo
+</span><br /><span class="linenumbers">&nbsp;126&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;127&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$in</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="variables">$_</span><span class="operators">[</span><span class="numbers">0</span><span class="operators">]</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;128&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br /><span class="linenumbers">&nbsp;129&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">for</span><span class="default">&nbsp;</span><span class="operators">(</span><span class="default">&nbsp;</span><span class="keywords">my</span><span class="default">&nbsp;</span><span class="variables">$log</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="operators">&amp;</span><span class="identifiers">log_base</span><span class="operators">(</span><span class="numbers">2</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$in</span><span class="operators">)</span><span class="default">&nbsp;</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$log</span><span class="default">&nbsp;</span><span class="operators">-</span><span class="default">&nbsp;</span><span class="keywords">int</span><span class="operators">(</span><span class="variables">$log</span><span class="operators">)</span><span class="default">&nbsp;</span><span class="operators">&gt;</span><span class="default">&nbsp;</span><span class="numbers">0</span><span class="default">&nbsp;</span><span class="operators">;</span><span class="default">&nbsp;</span><span class="variables">$log</span><span class="default">&nbsp;</span><span class="operators">=</span><span class="default">&nbsp;</span><span class="operators">&amp;</span><span class="identifiers">log_base</span><span class="operators">(</span><span class="numbers">2</span><span class="operators">,</span><span class="default">&nbsp;</span><span class="variables">$in</span><span class="operators">))</span>
+<br /><span class="linenumbers">&nbsp;130&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">{</span>
+<br /><span class="linenumbers">&nbsp;131&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">#&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;"\&amp;log_base(2,&nbsp;$in)&nbsp;=&nbsp;",&amp;log_base(2,&nbsp;$in),"\n";</span>
+<br /><span class="linenumbers">&nbsp;132&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variables">$in</span><span class="operators">++</span>
+<br /><span class="linenumbers">&nbsp;133&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">};</span>
+<br /><span class="linenumbers">&nbsp;134&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br /><span class="linenumbers">&nbsp;135&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keywords">return</span><span class="default">&nbsp;</span><span class="variables">$in</span><span class="operators">;</span>
+<br /><span class="linenumbers">&nbsp;136&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="operators">}</span>
+<br /><span class="linenumbers">&nbsp;137&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;138&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<br /><span class="linenumbers">&nbsp;139&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="numbers">1</span><span class="operators">;</span>
+</p></body></html>

@@ -1,0 +1,35 @@
+PART=$1
+OUT=$2
+
+#livecd-iso-to-disk --format --reset-mbr --overlay-size-mb 200 old/Fedora-14-i686-Live-Desktop.iso /dev/sdb
+
+echo "DD          :"
+rm -f $OUT.img 2>/dev/null
+dd if=$PART of=$OUT.img bs=512 conv=notrunc,sync,fdatasync,fsync
+
+echo "DIFFERENCES :"
+diff $PART  $OUT.img
+
+echo "DISK        :"
+sfdisk -V -luS $PART
+
+echo "IMAGE    	  :"
+sfdisk -V -luS $OUT.img
+
+echo "CONV RAW 	  :"
+rm -f $OUT.raw 2>/dev/null
+qemu-img convert $OUT.img -O raw $OUT.raw
+
+echo "CONV VDI 	  :"
+rm -f $OUT.vdi 2>/dev/null
+
+VBoxManage convertfromraw --variant Fixed --format VHD $OUT.raw $OUT.vdi
+
+rm -f $OUT.raw 2>/dev/null
+
+echo "CONV VDI 	  :"
+./extract $OUT.vdi
+
+echo "CH OWNER 	  :"
+chown saulo:saulo *
+chmod 664 $OUT.vdi

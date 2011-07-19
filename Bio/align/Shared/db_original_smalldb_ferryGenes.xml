@@ -1,0 +1,353 @@
+<xml>
+	<run>
+		<mkdb>			1		</mkdb>
+		<merge>			1 		</merge>
+		<convert>		1 		</convert>
+		<clustal>		1 		</clustal>
+		<probes>		0 		</probes>
+		<dryRun>		0 		</dryRun>
+		<progsFolder>	Shared/ </progsFolder>
+		<grouping>		GENES 	</grouping>
+		<converterFilter></converterFilter>
+		<!-- <grouping>	REGIO </grouping> -->
+		<!-- <grouping>	GENES, REGIO </grouping> -->
+
+		<fastaQuery>	<run.folders.qryFasta/>/geneBYgene.fasta 							</fastaQuery>
+		<fastaRef>		<run.folders.refFasta/>/Cryptococcus_gattii_R265_CHROMOSSOMES.fasta </fastaRef>
+
+		<folders>
+			<queryfasta>	query_fasta 				</queryfasta>
+			<fasta>  		fasta      					</fasta>
+			<refFasta>		<run.progsFolder/>fasta 	</refFasta>
+			<!--<out>			out 						</out>-->
+			<expression>  	  					</expression>
+
+			<db>			00_db 						</db>
+			<blast>			01_blast 					</blast>
+			<xml>			02_xml 						</xml>
+			<xmltomerge>	03_xml_to_merge 			</xmltomerge>
+			<outmerged>		04_xml_merged			 	</outmerged>
+			<clustal>		05_clustal 					</clustal>
+			<probes>  		06_probes  					</probes>
+			<alignments>	07_align					</alignments>
+			<pcr>			08_pcr 						</pcr>
+		</folders>
+
+		<programs>
+			<dbmaker>			<run.progsFolder/>00_mkdb.pl					</dbmaker>
+			<blast2xml>			<run.progsFolder/>01_blast_xml.pl				</blast2xml>
+			<merger>			<run.progsFolder/>02_mergeXML.pl				</merger>
+			<clustal>			<run.progsFolder/>03_clustal.pl					</clustal>
+			<consensus> 		<run.progsFolder/>04_consensus.pl				</consensus>
+			<primerFromFasta>	<run.progsFolder/>05_primerFromFasta.pl			</primerFromFasta>
+			<primerDesign>		<run.progsFolder/>0501_queryPrimerDesignTool.pl	</primerDesign>
+			<converter>			<run.progsFolder/>0502_mergedTab2Align.pl		</converter>
+			<primerTest>		<run.progsFolder/>0503_primerTest.pl			</primerTest>
+			<epcr>				<run.progsFolder/>0504_ePCR.pl					</epcr>
+			<clustalexe>		<run.progsFolder/>clustalw2						</clustalexe>
+		</programs>
+	</run>
+
+
+	<mkdb>
+		<progsFolder>	<run.progsFolder/> </progsFolder>
+
+		<pipeline>
+			<serious>       1 </serious>
+			<mkDb>          1 </mkDb>
+			<blast>         1 </blast>
+			<xml>			1 </xml>
+			<convert>		0 </convert>
+			<pca>			0 </pca>
+			<expression>	0 </expression>
+		</pipeline>
+
+		<programs>
+			<blast2xml>	<run.programs.blast2xml/>                                       </blast2xml>
+			<merger>	<run.programs.merger/>                                          </merger>
+			<xml2html>	java -jar /home/saulo/Desktop/blast/cgh/xalan-j_2_7_1/xalan.jar </xml2html>
+			<xml2csv>	<run.progsFolder/>genMultivarTable.pl                           </xml2csv>
+			<pca>		<run.progsFolder/>PCA.pl                                        </pca>
+			<pcaR>		<run.progsFolder/>runR <run.progsFolder/>pca.r                  </pcaR>
+		</programs>
+
+
+		<folders>
+			<dbFolder>     	<run.folders.db/>         </dbFolder>
+			<fastaFolder>  	<run.folders.fasta/>      </fastaFolder>
+			<blastFolder>  	<run.folders.blast/>      </blastFolder>
+			<xmlFolder>    	<run.folders.xml/>        </xmlFolder>
+			<mergedFolder> 	<run.folders.outmerged/>  </mergedFolder>
+			<inFastaFolder>	<run.folders.queryfasta/> </inFastaFolder>
+			<inExpFolder>  	<run.folders.expression/> </inExpFolder>
+		</folders>
+
+
+		<MkDb>
+			<cleanDb> 		1 </cleanDb>
+			<cleanFile>		1 </cleanFile>
+			<mkRoot>		1 </mkRoot>
+			<mkAlias>		0 </mkAlias>
+			<folders>
+				<dbFolder>     	<mkdb.folders.dbFolder/>    </dbFolder>
+				<fastaFolder>  	<mkdb.folders.fastaFolder/> </fastaFolder>
+			</folders>
+		</MkDb>
+
+		<db>
+			<array>
+				<fileName>	Cryptococcus_gattii_R265_CHROMOSSOMES.fasta </fileName>
+				<dbName>	cgR265                                      </dbName>
+				<title>		Cryptococcus gattii R265                    </title>
+				<taxId>		294750                                      </taxId>
+			</array>
+
+			<array>
+				<fileName>	cbs7750v4.fasta                             </fileName>
+				<dbName>	cgcbs7750v4                                 </dbName>
+				<title>		Cryptococcus gattii CBS7750 v4              </title>
+				<taxId>		294751                                      </taxId>
+			</array>
+
+			<array>
+				<fileName>	cbs7750_DE_NOVO_LAST.fasta                  </fileName>
+				<dbName>	cgcbs7750DN1                                </dbName>
+				<title>		Cryptococcus gattii CBS7750 DN 01           </title>
+				<taxId>		294751                                      </taxId>
+			</array>
+			
+			<array>
+				<fileName>	crypto2.soap.denovo.scafSeq.fasta           </fileName>
+				<dbName>	cgcbs7750DN2Scaf                            </dbName>
+				<title>		Cryptococcus gattii CBS7750 DN 02 scaf      </title>
+				<taxId>		294751                                      </taxId>
+			</array>
+						
+			<array>
+				<fileName>	crypto2.soap.denovo.scafSeq.gapclosed.fasta </fileName>
+				<dbName>	cgcbs7750DN2scafnogap                       </dbName>
+				<title>		Cryptococcus gattii CBS7750 DN 02 scaf gap  </title>
+				<taxId>		294751                                      </taxId>
+			</array>
+						
+			<array>
+				<fileName>	cbs7750_DE_NOVO_LAST_2.fasta                </fileName>
+				<dbName>	cgcbs7750DN2                                </dbName>
+				<title>		Cryptococcus gattii CBS7750 DN 02           </title>
+				<taxId>		294751                                      </taxId>
+			</array>
+
+			<array>
+				<fileName>  WM276GBFF10_06_full_named.fasta				</fileName>
+				<dbName>    cnwm276										</dbName>
+				<title>     Cryptococcus neoformans WM276				</title>
+				<taxId>     367775                          		 	</taxId>
+			</array>
+
+			<array>
+				<fileName>  Cryptococcus_neoformans_var_grubii_H99_SCAFFOLD.fasta	</fileName>
+				<dbName>    cngrubiiH99                                     		</dbName>
+				<title>     Cryptococcus neoformans var grubii H99                  </title>
+				<taxId>     235443                                     				</taxId>
+			</array>
+
+			<array>
+				<fileName>  Cryptococcus_neoformans_var_neoformans_B3501A_CHROMOSSOMES.fasta	</fileName>
+				<dbName>    cnneoB3501A                                     					</dbName>
+				<title>     Cryptococcus neoformans var neoformans B-3501A                   	</title>
+				<taxId>     283643                                     							</taxId>
+			</array>
+
+			<array>
+				<fileName>Cryptococcus_neoformans_var_neoformans_JEC21_CHROMOSSOMES.fasta	</fileName>
+				<dbName>  cnneoJEC21                                     					</dbName>
+				<title>   Cryptococcus neoformans var neoformans JEC21                   	</title>
+				<taxId>   214684                                     					 	</taxId>
+			</array>
+		</db>
+
+		<blast>
+			<doShort>				 0     </doShort>
+			<blastRoot> 			 1     </blastRoot>
+			<blastAlias> 			 0     </blastAlias>
+			<threads>				12     </threads>
+			<task>					blastn </task>
+			<evalue>				.1     </evalue>
+			<identity>				50     </identity>
+			<!-- <task>     blastn-short </task> -->
+			<desc>					EVALUE <mkdb.blast.evalue/> TASK <mkdb.blast.task/> IDENTITY <mkdb.blast.identity/> </desc>
+			<folders>
+				<dbFolder>			<mkdb.folders.dbFolder/>    </dbFolder>
+				<fastaFolder>		<mkdb.folders.fastaFolder/> </fastaFolder>
+				<blastFolder>		<mkdb.folders.blastFolder/> </blastFolder>
+			</folders>
+
+			<doShort>
+				<gapOpen>			 2 </gapOpen>
+				<gapExtend>			 2 </gapExtend>
+				<wordSize>			 4 </wordSize>
+				<penalty>			-3 </penalty>
+				<reward>			 2 </reward>
+				<windowSize>		 4 </windowSize>
+				<minRawGapScore>	10 </minRawGapScore>
+				<xDrop>         	10 </xDrop>
+			</doShort>
+		</blast>
+
+		<xml>
+			<blast2xml>				<mkdb.programs.blast2xml/>  </blast2xml>
+			<!--<xmlMerger>				<mkdb.programs.merger/>     </xmlMerger>-->
+			<mkXml>					1                           </mkXml>
+			<!--<mergeXml>				1                           </mergeXml>-->
+			<expression>			<mkdb.pipeline.expression/> </expression>
+			<expressionInFolder>	<mkdb.folders.inExpFolder/> </expressionInFolder>
+			<desc>					<mkdb.blast.desc/>          </desc>
+			<!--<expression>ORIGINAL_DATA_FINAL.txt.xml</expression>-->
+			<folders>
+				<blast>				<mkdb.folders.blastFolder/>  </blast>
+				<xml>				<mkdb.folders.xmlFolder/>    </xml>
+				<merged>			<mkdb.folders.mergedFolder/> </merged>
+			</folders>
+		</xml>
+
+		<convert>
+			<doHtml>				0                           </doHtml>
+			<doCsv>					1                           </doCsv>
+			<xml2html>				<mkdb.programs.xml2html/>   </xml2html>
+			<xml2csv>				<mkdb.programs.xml2csv/>    </xml2csv>
+			<expression>			<mkdb.pipeline.expression/> </expression>
+			<expressionInFolder>	<mkdb.folders.inExpFolder/> </expressionInFolder>
+			<folders>
+				<merged>			<mkdb.folders.mergedFolder/> </merged>
+			</folders>
+		</convert>
+
+		<pca>
+			<mkPca>                 0                           </mkPca>
+			<mkPcaR>                0                           </mkPcaR>
+			<pca>					<mkdb.programs.pca/>        </pca>
+			<pcaR>					<mkdb.programs.pcaR/>       </pcaR>
+			<expression>			<mkdb.pipeline.expression/> </expression>
+			<expressionInFolder>	<mkdb.folders.inExpFolder/> </expressionInFolder>
+			<folders>
+				<merged>			<mkdb.folders.mergedFolder/>       </merged>
+			</folders>
+		</pca>
+		<!--
+
+		<alias>
+			<array>
+				<dbs>	cgR265 cgcbs7750v4 cngrubiiH99 cnneoB3501A cnneoJEC21 cnwm276	</dbs>
+				<dbName>crypto															</dbName>
+				<title>	Cryptococcus													</title>
+			</array>
+			<array>
+				<dbs>	cgR265 cgcbs7750v4 												</dbs>
+				<dbName>cgattii															</dbName>
+				<title>	Cryptococcus gattii												</title>
+			</array>
+			<array>
+				<dbs>	cngrubiiH99 cnneoB3501A cnneoJEC21								</dbs>
+				<dbName>cneo															</dbName>
+				<title>	Cryptococcus neoformans											</title>
+			</array>
+			<array>
+				<dbs>	cnneoB3501A cnneoJEC21											</dbs>
+				<dbName>cneoneo															</dbName>
+				<title>	Cryptococcus neoformans neoformans								</title>
+			</array>
+		</alias>
+
+		<pcaPar>
+			<array>-renameRE JEC21_LT_15FOLD_AND_GT001 JEC21 							</array>
+			<array>-renameRE R265_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE001 R265  		</array>
+			<array>-renameRE H99_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE001 H99  		</array>
+			<array>-renameRE B3501_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE00 B3501  		</array>
+			<array>-exclude go_comp go_func go_supp ID  								</array>
+			<array>-renameRE Cryptococcus_gattii_R265 R265  							</array>
+			<array>-renameRE Cryptococcus_neoformans_var_grubii_H99 H99  				</array>
+			<array>-renameRE Cryptococcus_neoformans_var_neoformans_B3501A B3501		</array>
+			<array>-renameRE Cryptococcus_neoformans_var_neoformans_JEC21 JEC21 		</array>
+		</pcaPar>
+
+		<inFiles>CNA_probes</inFiles>
+
+
+		-->
+	</mkdb>
+
+
+
+
+    <blastXml>
+		<hypothetical>	 0 	</hypothetical>
+		<minIdent>		40 	</minIdent>
+		<minConsv>		40 	</minConsv>
+		<minMaxStretch>	5 	</minMaxStretch>
+		<saveGenes>		1 	</saveGenes>
+		<saveOrganisms>	0 	</saveOrganisms>
+	</blastXml>
+
+	<mergetab2align>
+		<!--<inFiles>		<mkdb.inFiles/>		</inFiles>-->
+		<db> 			<mkdb.db./> 		</db>
+
+		<folders>
+			<fastaFolder> 	<mkdb.folders.fastaFolder/>		</fastaFolder>
+			<inFastaFolder>	<mkdb.folders.inFastaFolder/>	</inFastaFolder>
+		</folders>
+	</mergetab2align>
+
+	<clustal>
+		<run> 			1 							</run>
+		<max>			6							</max>
+		<clustalP>		<run.programs.clustalexe/>	</clustalP>
+
+		<inputFolder>	<run.folders.outmerged/>	</inputFolder>
+		<outputFolder>	<run.folders.clustal/>		</outputFolder>
+		<sleeptime>		5 							</sleeptime>
+		<params>
+			<numInter>	500 	</numInter>
+			<bootstrap>	500 	</bootstrap>
+			<pwgapopen>	10   	</pwgapopen>
+			<pwgapext>	6.66	</pwgapext>
+			<gapopen>	10 		</gapopen>
+			<gapext>	6.66 	</gapext>
+			<tree>		1 		</tree>
+			<tree>
+				<outputtree>	NJ 		</outputtree>
+				<clustering>	UPGMA 	</clustering>
+				<pim>			1 		</pim>
+			</tree>
+		</params>
+
+		<makeConsensus>	1 							</makeConsensus>
+		<consensusProg> <run.programs.consensus/>	</consensusProg>
+	</clustal>
+
+	<probes>
+		<run>				1 									</run>
+		<pcrFasta>  		<run.fastaQuery/>					</pcrFasta>
+
+		<folders>
+			<inputFolder>		<clustal.outputFolder/>			</inputFolder>
+			<outputFolder>		<run.folders.probes/>			</outputFolder>
+			<alignmentFolder>	<run.folders.alignments/>		</alignmentFolder>
+			<pcrFolder>			<run.folders.pcr/>				</pcrFolder>
+		</folders>
+
+		<programs>
+			<primerDesign>		<run.programs.primerDesign/>		</primerDesign>
+			<primerTest>		<run.programs.primerTest/>			</primerTest>
+			<epcr>				<run.programs.epcr/>				</epcr>
+		</programs>
+
+		<do>
+			<design>	1	</design>
+			<test>		1	</test>
+			<pcr>		1 	</pcr>
+		</do>
+	</probes>
+
+
+</xml>

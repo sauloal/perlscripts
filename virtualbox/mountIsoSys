@@ -1,0 +1,38 @@
+CMD=$1
+
+#VDI=f14_disk.vdi
+IMG=img
+SYS=sys
+DSK=disk
+
+if [ -z $CMD ]; then
+	echo 'NO COMMAND GIVEN'
+else
+	echo "RUNNING $CMD"
+fi
+
+if [[ $CMD == 'mount' ]]; then
+	echo 'MOUNTING'
+	mkdir $IMG 2>/dev/null
+	mkdir $SYS 2>/dev/null
+	#mkdir $DSK 2>/dev/null
+
+	#./mountVdi $VDI $DSK
+	mount -o loop disk/LiveOS/squashfs.img $IMG
+	mount -o loop img/LiveOS/ext3fs.img $SYS
+	exit
+fi
+
+if [[ $CMD == "umount" ]]; then
+	echo 'UMOUNTING'
+	umount $SYS
+	umount $IMG
+	#umount $DSK
+
+	#rmdir $DSK 2>/dev/null
+	rmdir $IMG 2>/dev/null
+	rmdir $SYS 2>/dev/null
+	exit
+fi
+
+echo "unknown command '$CMD'. valid commands are 'mount' and 'umount'"

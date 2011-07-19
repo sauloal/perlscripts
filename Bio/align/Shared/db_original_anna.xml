@@ -1,0 +1,246 @@
+<xml>
+	<inFiles><INFILEREPLACE/></inFiles>
+
+	<dbFolder>     db         </dbFolder>
+	<fastaFolder>  fasta      </fastaFolder>
+	<blastFolder>  blast      </blastFolder>
+	<xmlFolder>    xml        </xmlFolder>
+	<finalFolder>  out        </finalFolder>
+	<inExpFolder>  query_exp  </inExpFolder>
+	<inFastaFolder>query_fasta</inFastaFolder>
+
+
+<!-- <inFiles>CNA_probes</inFiles> -->
+<!--	<expression>ORIGINAL_DATA_FINAL.txt.xml</expression> -->
+	<expression></expression>
+
+	<db>
+		<array>
+			<fileName>Aspergillus_clavatus_NRRL_1_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Aclavatus                   										</dbName>
+			<title>   Aspergillus clavatus NRRL 1 CHROMOSSOMES							</title>
+			<taxId>   01                      					 						</taxId>
+		</array>
+		<array>
+			<fileName>Aspergillus_flavus_NRRL3357_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Aflavus                     										</dbName>
+			<title>   Aspergillus flavus NRRL3357 CHROMOSSOMES      					</title>
+			<taxId>   02		                 					 					</taxId>
+		</array>
+		<array>
+			<fileName>Aspergillus_fumigatus_Af293_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Afumigatus               											</dbName>
+			<title>   Aspergillus fumigatus Af293 CHROMOSSOMES      					</title>
+			<taxId>   03     					 										</taxId>
+		</array>
+		<array>
+			<fileName>Aspergillus_nidulans_FGSC_A4_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Anidulans   														</dbName>
+			<title>   Aspergillus nidulans FGSC A4 CHROMOSSOMES      					</title>
+			<taxId>   04											 					</taxId>
+		</array>
+		<array>
+			<fileName>Aspergillus_niger_CBS513.88_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Aniger															</dbName>
+			<title>   Aspergillus niger CBS513.88 CHROMOSSOMES      					</title>
+			<taxId>   05 																</taxId>
+		</array>
+		<array>
+			<fileName>Aspergillus_oryzae_RIB40_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  Aoryzae                      										</dbName>
+			<title>   Aspergillus oryzae RIB40 CHROMOSSOMES								</title>
+			<taxId>   06               					 			 					</taxId>
+		</array>
+		<array>
+			<fileName>Aspergillus_terreus_NIH2624_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Aterreus             												</dbName>
+			<title>   Aspergillus terreus NIH2624 CHROMOSSOMES      					</title>
+			<taxId>   07            					 								</taxId>
+		</array>
+		<array>
+			<fileName>Candida_albicans_sc5314_assembly_21_1_CONTIGS.fasta				</fileName>
+			<dbName>  Calbicans5314          											</dbName>
+			<title>   Candida albicans sc5314 assembly 21 1 CONTIGS      				</title>
+			<taxId>   08			 													</taxId>
+		</array>
+		<array>
+			<fileName>Candida_albicans_wo1_1_CHROMOSSOMES.fasta							</fileName>
+			<dbName>  Calbicanswo1														</dbName>
+			<title>   Candida albicans wo1 1 CHROMOSSOMES      							</title>
+			<taxId>   09																</taxId>
+		</array>
+		<array>
+			<fileName>Candida_dubliniensis_CD36_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  Cdub                     											</dbName>
+			<title>   Candida dubliniensis CD36 CHROMOSSOMES      						</title>
+			<taxId>   10		                   								 		</taxId>
+		</array>
+		<array>
+			<fileName>Candida_glabrata_CBS138_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  Cgla                 												</dbName>
+			<title>   Candida glabrata CBS138 CHROMOSSOMES      						</title>
+			<taxId>   11                 					 							</taxId>
+		</array>
+		<array>
+			<fileName>Candida_guilliermondii_1_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  Cgui             													</dbName>
+			<title>   Candida guilliermondii 1 CHROMOSSOMES      						</title>
+			<taxId>   12             							 						</taxId>
+		</array>
+		<array>
+			<fileName>Candida_kruisii_CONTIGS.fasta										</fileName>
+			<dbName>  Ckru         														</dbName>
+			<title>   Candida kruisii CONTIGS      										</title>
+			<taxId>   13          					 									</taxId>
+		</array>
+		<array>
+			<fileName>Candida_lusitaniae_1_CHROMOSSOMES.fasta							</fileName>
+			<dbName>  Clus1 		    												</dbName>
+			<title>   Candida lusitaniae 1 CHROMOSSOMES      							</title>
+			<taxId>   14      					 										</taxId>
+		</array>
+		<array>
+			<fileName>Candida_parapsilosis_1_CONTIGS.fasta								</fileName>
+			<dbName>  Cpar 																</dbName>
+			<title>   Candida parapsilosis 1 CONTIGS      								</title>
+			<taxId>   15								 								</taxId>
+		</array>
+		<array>
+			<fileName>Candida_tropicalis_3_CHROMOSSOMES.fasta							</fileName>
+			<dbName>  Ctro																</dbName>
+			<title>   Candida tropicalis 3 CHROMOSSOMES      							</title>
+			<taxId>   16									 							</taxId>
+		</array>
+		<array>
+			<fileName>Clavispora_lusitaniae_ATCC42720_WGS_SCAFFOLD.fasta				</fileName>
+			<dbName>  Clus42															</dbName>
+			<title>   Clavispora lusitaniae ATCC42720 WGS SCAFFOLD      				</title>
+			<taxId>   17											 					</taxId>
+		</array>
+		<array>
+			<fileName>Cryptococcus_gattii_R265_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  CgattiiR265             											</dbName>
+			<title>   Cryptococcus gattii R265 CHROMOSSOMES      						</title>
+			<taxId>   18										 						</taxId>
+		</array>
+		<array>
+			<fileName>Cryptococcus_gattii_WM276_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  Cgattiiwm276          											</dbName>
+			<title>   Cryptococcus gattii WM276 CHROMOSSOMES      						</title>
+			<taxId>   19			 													</taxId>
+		</array>
+		<array>
+			<fileName>Cryptococcus_neoformans_var_grubii_H99_SCAFFOLD.fasta				</fileName>
+			<dbName>  Cgrubiih99       													</dbName>
+			<title>   Cryptococcus neoformans var grubii H99 SCAFFOLD      				</title>
+			<taxId>   20												 				</taxId>
+		</array>
+		<array>
+			<fileName>Cryptococcus_neoformans_var_neoformans_B3501A_CHROMOSSOMES.fasta	</fileName>
+			<dbName>  Cneoneob3501         												</dbName>
+			<title>   Cryptococcus neoformans var neoformans B3501A CHROMOSSOMES      	</title>
+			<taxId>   21       					 										</taxId>
+		</array>
+		<array>
+			<fileName>Cryptococcus_neoformans_var_neoformans_JEC21_CHROMOSSOMES.fasta	</fileName>
+			<dbName>  Cneoneojec21     													</dbName>
+			<title>   Cryptococcus neoformans var neoformans JEC21 CHROMOSSOMES      	</title>
+			<taxId>   22		 														</taxId>
+		</array>
+		<array>
+			<fileName>Debaryomyces_hansenii_CBS767_CHROMOSSOMES.fasta					</fileName>
+			<dbName>  Dhansenii															</dbName>
+			<title>   Debaryomyces hansenii CBS767 CHROMOSSOMES      					</title>
+			<taxId>   23																</taxId>
+		</array>
+		<array>
+			<fileName>Kluyveromyces_lactis_NRRL_Y-1140_CHROMOSSOMES.fasta				</fileName>
+			<dbName>  Klactis															</dbName>
+			<title>   Kluyveromyces lactis NRRL Y-1140 CHROMOSSOMES      				</title>
+			<taxId>   24																</taxId>
+		</array>
+		<array>
+			<fileName>Lodderomyces_elongisporus_YB-4239_CHROMOSSOMES.fasta				</fileName>
+			<dbName>  Lelon																</dbName>
+			<title>   Lodderomyces elongisporus YB-4239 CHROMOSSOMES      				</title>
+			<taxId>   25																</taxId>
+		</array>
+		<array>
+			<fileName>Saccharomyces_cerevisiae_CHROMOSSOMES.fasta						</fileName>
+			<dbName>  Scer																</dbName>
+			<title>   Saccharomyces cerevisiae CHROMOSSOMES      						</title>
+			<taxId>   26																</taxId>
+		</array>
+	</db>
+<!--
+	<alias>
+		<array>
+			<dbs>	cgR265 cgcbs7750v4 cngrubiiH99 cnneoB3501A cnneoJEC21 cnwm276	</dbs>
+			<dbName>crypto															</dbName>
+			<title>	Cryptococcus													</title>
+		</array>
+		<array>
+			<dbs>	cgR265 cgcbs7750v4 												</dbs>
+			<dbName>cgattii															</dbName>
+			<title>	Cryptococcus gattii												</title>
+		</array>
+		<array>
+			<dbs>	cngrubiiH99 cnneoB3501A cnneoJEC21								</dbs>
+			<dbName>cneo															</dbName>
+			<title>	Cryptococcus neoformans											</title>
+		</array>
+		<array>
+			<dbs>	cnneoB3501A cnneoJEC21											</dbs>
+			<dbName>cneoneo															</dbName>
+			<title>	Cryptococcus neoformans neoformans								</title>
+		</array>
+	</alias>
+-->
+	<pcaPar>
+		<array>-renameRE JEC21_LT_15FOLD_AND_GT001 JEC21 							</array>
+		<array>-renameRE R265_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE001 R265  		</array>
+		<array>-renameRE H99_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE001 H99  		</array>
+		<array>-renameRE B3501_GE_20FOLD_LE_001JEC21_GE_15FOLD_AND_LE00 B3501  		</array>
+		<array>-exclude go_comp go_func go_supp ID  								</array>
+		<array>-renameRE Cryptococcus_gattii_R265 R265  							</array>
+		<array>-renameRE Cryptococcus_neoformans_var_grubii_H99 H99  				</array>
+		<array>-renameRE Cryptococcus_neoformans_var_neoformans_B3501A B3501		</array>
+		<array>-renameRE Cryptococcus_neoformans_var_neoformans_JEC21 JEC21 		</array>
+	</pcaPar>
+
+
+	<serious>       1 </serious>
+	<doClean>       1 </doClean>
+	<doCleanDb>     1 </doCleanDb>
+	<mkDb>          1 </mkDb>
+	<mkAlias>       1 </mkAlias>
+	<mkXml>         1 </mkXml>
+	<mergeXml>      0 </mergeXml>
+	<convertHtml>   1 </convertHtml>
+	<convertCsv>    0 </convertCsv>
+	<mkPca>         0 </mkPca>
+	<mkPcaR>        0 </mkPcaR>
+
+	<blast>         1 </blast>
+	<blast>
+		<doAlias>  				 1 		</doAlias>
+		<doShort>				 0		</doShort>
+		<doShort>
+	 		<gapOpen>			 2		</gapOpen>
+			<gapExtend>			 2		</gapExtend>
+			<wordSize>			 4		</wordSize>
+			<penalty>			-3		</penalty>
+			<reward>			 2		</reward>
+			<windowSize>		 4		</windowSize>
+			<minRawGapScore>	10		</minRawGapScore>
+			<xDrop>         	10		</xDrop>
+		</doShort>
+
+		<evalue>				.1			</evalue>
+		<identity>				50			</identity>
+		<threads>				6			</threads>
+		<task>					blastn		</task>
+		<!-- <task>     blastn-short </task> -->
+		<desc>					EVALUE <blast.evalue/> TASK <blast.task/> IDENTITY <blast.identity/> </desc>
+	</blast>
+</xml>

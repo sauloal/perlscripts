@@ -1,0 +1,5 @@
+extracts pdf inforation, converts it to text and html and creates a xml database with its data and word count
+given the folder BOOKS will create BOOKS_xml folder containing xml files named after the sha256 signature of each pdf file found.
+each file will contain the pdf converted to html encoded as base64, information about the pdf file and stemmized word count.
+additionally a file called pdfdb_BOOKS.xml will contain the details of each file including full file name, folder, size, sha256 signature, among other metadata.
+there's also a pdfdb_BOOKS.nfo showing statistics of the database as number of files, duplicates, total size, etc.

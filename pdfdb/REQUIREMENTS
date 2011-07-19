@@ -1,0 +1,10 @@
+yum install chm2pdf
+yum install pdf2djvu djvulibre djvulibre-libs
+#http://0x2a.at/s/projects/djvu2pdf
+	http://0x2a.at/static/site/projects/djvu2pdf/djvu2pdf-0.9.1.tar.gz
+#http://code.google.com/p/chm2pdf/
+	http://chm2pdf.googlecode.com/files/chm2pdf-0.9.1.tar.gz
+
+djvutxt 1393.Molecular\ Modelling.\ Principles\ and\ Applications\ \(2nd\ Edition\)\ by\ Andrew\ R.\ Leach.djvu
+djvups
+chm2pdf --book Linux.for.Programmers.and.Users.chm

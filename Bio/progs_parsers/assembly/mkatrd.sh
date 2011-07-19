@@ -1,0 +1,11 @@
+echo exporting reads
+cat crypto_out.maf | grep -E "^AT|^RD|^CO" | perl -ne 's/^RD\t(\S*)\n/\1/; s/^CO\t(\S*)\n/\1\n/; s/^AT//; print' | perl -ne 'if (/^(\S+)$/) { print "\t</chrom>\n" if $cc++; print "\t<chrom id=\"$1\">\n"; } elsif (/(\S+)\t(.*)/) { $rd = $1; $nfo = $2; print "\t\t<nfo id=\"$rd\">$nfo</nfo>\n" if ($rd !~ /rr_/)} BEGIN {print "<at>\n"; $cc=0;} END {print "\t</chrom>\n</at>\n";}' > crypto_out.maf.atrd.reads.xml
+echo exporting rr
+cat crypto_out.maf | grep -E "^AT|^RD|^CO" | perl -ne 's/^RD\t(\S*)\n/\1/; s/^CO\t(\S*)\n/\1\n/; s/^AT//; print' | perl -ne 'if (/^(\S+)$/) { print "\t</chrom>\n" if $cc++; print "\t<chrom id=\"$1\">\n"; } elsif (/(\S+)\t(.*)/) { $rd = $1; $nfo = $2; print "\t\t<nfo id=\"$rd\">$nfo</nfo>\n" if ($rd =~ /rr_/)} BEGIN {print "<at>\n"; $cc=0;} END {print "\t</chrom>\n</at>\n";}' > crypto_out.maf.atrd.rr.xml
+echo converting xml
+cat crypto_out.maf.atrd.reads.xml | perl -MSet::IntSpan::Fast -ne 'BEGIN {$co = ""; %hash; }; if (/\<chrom id\=\"(\S+)\"/) { $co = $1; $hash{$co} = Set::IntSpan::Fast->new(); } elsif (/\<nfo .*?\>(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\<\/nfo\>/) { print "CO $co RS $1 RE $2 RD ",($1 >$2 ? $1 - $2 : $2 - $1)," QS $3 QE $4 QD ",($4-$3),"\n"; $hash{$co}->add_range($1,$2); } END { foreach my $ch (sort keys %hash) { print "$ch\t", $hash{$ch}->as_string(), "\n"; }}' > crypto_out.maf.atrd.reads.xml.out
+
+#cat crypto_out.maf | grep -E "^AT|^RD|^CO" | perl -ne 's/^RD\t(\S*)\n/\1/; s/^CO\t(\S*)\n/\1\n/; s/^AT//; print' | perl -ne 'if (/^(\S+)$/) { print "\t</chrom>\n" if $cc++; print "\t<chrom id=\"$1\">\n"; } elsif (/(\S+)\t(.*)/) { $rd = $1; $nfo = $2; print "\t\t<nfo id=\"$rd\">$nfo</nfo>\n" if ($rd =~ /rr/)} BEGIN {print "<at>\n"; $cc=0;} END {print "\t</chrom>\n</at>\n";}' > crypto_out.maf.atrd.xml
+#cat crypto_out.maf | grep -E "^AT|^RD|^CO" | perl -ne 's/^RD\t(\S*)\n/\1/; s/^CO\t(\S*)\n/\1\n/; s/^AT//; print' | perl -ne 'if (/^(\S+)$/) { print "\t</chrom>\n\t<chrom id=\"$1\">\n"; } elsif (/(\S+)\t(.*)/) { $rd = $1; $nfo = $2; print "\t\t<nfo id=\"$rd\">$nfo</nfo>\n" if ($rd =~ /rr/)}' > crypto_out.maf.atrd.xml
+#cat crypto_out.maf | grep -E "^AT|^RD" | perl -ne 's/^RD\t(\S*)\n/\1/; s/^AT//; print' | grep rr > crypto_out.maf.atrd
+#cat crypto_out.maf | grep -E "^AT|^RD" > crypto_out.maf.atrd
